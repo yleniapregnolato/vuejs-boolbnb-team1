@@ -70,7 +70,7 @@ export default {};
       </small>
     </div>
     <!-- /Copyright -->
-     
+
   </footer>
 </template>
 
@@ -86,6 +86,10 @@ footer {
   a {
     color: black;
   }
+}
+
+li {
+  margin-top: 5px;
 }
 
 a {
