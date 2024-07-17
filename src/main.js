@@ -4,6 +4,7 @@ import "./scss/general.scss";
 import { router } from "./router";
 import '@fortawesome/fontawesome-free/css/all.css';
 import store from './storeData';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 
 
