@@ -1,2 +1,13 @@
 // Bootstrap
+@import '@fortawesome/fontawesome-free/css/all.css';
 @import "bootstrap/scss/bootstrap";
+@import 'vue-cal/dist/vuecal.css';
+
+.vuecal__cell {
+    width: calc(100% / 7) !important;  /* Imposta la larghezza delle celle */
+    height: 70px !important; /* Imposta l'altezza delle celle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: .1px solid #cf9d9d;   /* Aggiungi un bordo */
+}
