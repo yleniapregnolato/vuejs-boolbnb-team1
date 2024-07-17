@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 // Importare percorsi file
-import AppMain from "./pages/AppMain.vue";
+import HomePage from "./pages/HomePage.vue";
 
 const routes = [
   {
     path: "/",
     name: "home",
-    component: AppMain,
+    component: HomePage,
   },
 ];
 
