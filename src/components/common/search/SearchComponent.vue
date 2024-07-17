@@ -128,7 +128,7 @@ export default {
     width: 75%;
     border-radius: 2rem;
     background-color: rgb(253, 246, 239);
-    z-index: 10;
+    z-index: 99999;
 }
 
 .pl1rem {

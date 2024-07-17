@@ -1,10 +1,12 @@
 <script>
 import { mapState, mapMutations } from 'vuex';
 import SearchComponent from '../components/common/search/SearchComponent.vue';
+import CityCard from '../components/partials/CityCard.vue';
 
 export default {
   name: "HomePage",
-  components: { SearchComponent },
+  components: { SearchComponent, CityCard},
+
   data() {
     return {
       ...mapState([
@@ -39,6 +41,9 @@ export default {
       </div>
     </div>
   </div>
+  <!-- Card -->
+  <CityCard />
+  <!-- /Card -->
 </template>
 <style lang="scss" scoped>
 .bannerCont {
@@ -50,6 +55,7 @@ export default {
 
   img {
     opacity: .6;
+    object-fit: cover;
   }
 
   .ms_externalContent {

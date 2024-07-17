@@ -19,7 +19,6 @@ export default {
   <Header />
   <SearchBar />
   <router-view></router-view>
-  <CityCard />
   <Footer />
 </template>
 
