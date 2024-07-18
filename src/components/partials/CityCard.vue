@@ -19,7 +19,7 @@ export default {
         v-for="city in cities"
         :key="city.name"
       >
-        <div class="card m-5 w-100 rounded card-hover">
+        <div class="card m-5 w-100 rounded card-hover ms_csrd">
           <img
             class="card-img-top ms_img rounded"
             :src="city.link"
@@ -40,6 +40,9 @@ a {
   color: black;
 }
 
+.ms_csrd {
+  z-index: -1;
+}
 .ms_img {
   height: 40vh;
   object-fit: cover;
