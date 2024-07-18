@@ -14,7 +14,7 @@ export default {
         flatId: this.flatId,
         name: "",
         email: "",
-        message: "",
+        text: "",
       },
     };
   },
@@ -92,11 +92,11 @@ export default {
 
               <!-- Messaggio -->
               <div class="form-group">
-                <label for="message">Messaggio</label>
+                <label for="text">Messaggio</label>
                 <textarea
                   class="form-control"
-                  id="message"
-                  v-model="formData.message"
+                  id="text"
+                  v-model="formData.text"
                   rows="5"
                   required
                 ></textarea>
