@@ -1,58 +1,40 @@
 <script>
+import { mapState } from "vuex";
 export default {
   props: {},
   data() {
-    return {
-      cities: [
-        {
-          name: "Torino",
-          link: "https://hips.hearstapps.com/hmg-prod/images/torino-with-mole-antonelliana-and-the-alps-royalty-free-image-1643015862.jpg",
-        },
-        {
-          name: "Roma",
-          link: "https://image-tc.galaxy.tf/wijpeg-1lcrqdyl91lsdkomcnet6276l/1-roma-dall-alto-copertina_wide.jpg?crop=119%2C0%2C1742%2C980",
-        },
-        {
-          name: "Napoli",
-          link: "https://www.civitatis.com/blog/wp-content/uploads/2024/02/shutterstock_732553141-1920x1280.jpg",
-        },
-        {
-          name: "Firenze",
-          link: "https://tourismmedia.italia.it/is/image/mitur/20210401173629-firenze-toscana-gettyimages-1145040590?wid=1600&hei=900&fit=constrain,1&fmt=webp",
-        },
-        {
-          name: "Bari",
-          link: "https://images.lonelyplanetitalia.it/uploads/shutterstock-1451445944?q=80&p=slider&s=380ec9b48d95e3f821293c7ea2f1f768",
-        },
-        {
-          name: "Venezia",
-          link: "https://www.travel365.it/foto/seagull-flies-by-rialto-bridge-popular-landmark-venice-italy.jpg",
-        },
-      ],
-    };
+    return {};
+  },
+  computed: {
+    ...mapState(["cities"]),
   },
 };
 </script>
 
 <template>
   <div class="container">
-    
     <div class="row mt-5">
-      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" v-for="city in cities" :key="city.name">
-        <div class="card m-5 w-100">
-          <a href="">
-            <img class="card-img-top ms_img" :src="city.link" alt="Card image cap" />
-            <div class="pt-1 text-center">
-              <h4 class="card-title">{{ city.name }}</h4>
-            </div>
-          </a>
+      <div
+        class="col-xl-2 col-lg-2 col-md-6 col-sm-12"
+        v-for="city in cities"
+        :key="city.name"
+      >
+        <div class="card m-5 w-100 rounded card-hover">
+          <img
+            class="card-img-top ms_img rounded"
+            :src="city.link"
+            alt="Card image cap"
+          />
+          <div class="card-img-overlay text-center text-white rounded overlay">
+            <h4 class="card-title font">{{ city.name }}</h4>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 a {
   text-decoration: none;
   color: black;
@@ -65,11 +47,42 @@ a {
 }
 
 .navbar {
-  z-index: 1000; /* Assicurati che la navbar sia sempre sopra le carte */
+  z-index: 1000; /* Assicura che la navbar sia sopra le cards */
 }
 
 .card {
   position: relative;
-  z-index: -1; /* Assicurati che le carte siano sotto la navbar */
+}
+
+.font {
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+// Hover
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+.card-hover:hover .overlay {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.card-hover {
+  transition: filter 0.3s ease;
+}
+
+.card-hover:hover {
+  filter: brightness(100%);
 }
 </style>
