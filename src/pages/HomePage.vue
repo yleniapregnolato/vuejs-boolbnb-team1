@@ -3,10 +3,11 @@ import { mapState, mapMutations } from 'vuex';
 import SearchComponent from '../components/common/search/SearchComponent.vue';
 import CityCard from '../components/partials/CityCard.vue';
 import Footer from '../components/Footer.vue';
+import FlatMap from '../components/partials/FlatMap.vue';
 
 export default {
   name: "HomePage",
-  components: { SearchComponent, CityCard, Footer },
+  components: { SearchComponent, CityCard, Footer, FlatMap },
 
   computed: {
     ...mapState([
@@ -34,6 +35,8 @@ export default {
       </div>
     </div>
   </div>
+  <!-- Mappa -->
+  <FlatMap />
   <!-- Card -->
   <CityCard />
   <!-- /Card -->
