@@ -3,17 +3,27 @@ import { mapState, mapMutations } from 'vuex';
 import SearchComponent from '../components/common/search/SearchComponent.vue';
 import CityCard from '../components/partials/CityCard.vue';
 import Footer from '../components/Footer.vue';
-import FlatMap from '../components/partials/FlatMap.vue';
 
 export default {
   name: "HomePage",
-  components: { SearchComponent, CityCard, Footer, FlatMap },
+  components: { SearchComponent, CityCard, Footer},
+
+import Flat_card from '../components/partials/Flat_card.vue';
+import FlatsNotFound from '../components/partials/FlatsNotFound.vue';
+
+
+export default {
+  name: "HomePage",
+  components: { SearchComponent, CityCard, Footer, Flat_card, FlatsNotFound },
+
 
   computed: {
     ...mapState([
       'isDestinationActive',
       'isDateActive',
-      'isPeopleActive'
+      'isPeopleActive',
+      'foundedFlats',
+      'searchActive'
     ])
   },
   methods: {
@@ -35,12 +45,27 @@ export default {
       </div>
     </div>
   </div>
-  <!-- Mappa -->
-  <FlatMap />
+
+  <!-- flats researched -->
+  <div class="container mt-5">
+    <div class="row g-4" v-if="foundedFlats.length > 1">
+      <div class="col-12 col-md-6 col-lg-4 col-xl-3" v-for="flat in foundedFlats" :key="flat">
+        <Flat_card :flat="flat" />
+      </div>
+    </div>
+
+    <div class="row justify-content-center" v-if="foundedFlats.length < 1 && searchActive">
+      <div class="col-12 col-lg-8">
+        <FlatsNotFound />
+      </div>
+    </div>
+  </div>
+  <!-- /flats researched -->
+
   <!-- Card -->
   <CityCard />
   <!-- /Card -->
-  <Footer />
+  
 </template>
 
 <style lang="scss" scoped>
@@ -49,7 +74,7 @@ export default {
   height: 70vh;
   background-color: rgb(0, 0, 0);
   position: relative;
-  
+
 
   img {
     width: 100%;

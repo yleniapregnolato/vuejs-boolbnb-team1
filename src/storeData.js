@@ -52,6 +52,7 @@ const store = createStore({
                   link: "https://www.travel365.it/foto/seagull-flies-by-rialto-bridge-popular-landmark-venice-italy.jpg",
                 },
               ],
+      searchActive: false,
     };
   },
   mutations: {
@@ -102,6 +103,9 @@ const store = createStore({
     setSelectedSuggestion(state, suggestion) {
       state.selectedSuggestion = suggestion;
     },
+    setSearchActive(state) {
+      state.searchActive = true;
+    },
   },
   actions: {
     fetchFlats({commit, state}){
@@ -136,6 +140,8 @@ const store = createStore({
     },
     async cercaAppartamenti({ dispatch, state, commit }) {
         state.foundedFlats = [];
+        commit("setSearchActive");
+        commit("closeAll");
         for (const flat of state.allFlats) {
           const d = await dispatch('getDistanceFromLatLonInKm', { lat2: flat.latitude, lon2: flat.longitude });
           if (d < state.radius) {
