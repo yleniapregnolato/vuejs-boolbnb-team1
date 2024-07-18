@@ -4,7 +4,15 @@
 @import "bootstrap/scss/bootstrap";
 @import 'vue-cal/dist/vuecal.css';
 
+:root {
+    --bg-color: #F8F2EB;
+    --primary-color: #705D3F;
 
+}
+
+body {
+    background-color: var(--bg-color);
+}
 
 .vuecal__cell {
     width: calc(100% / 7) !important;  /* Imposta la larghezza delle celle */
@@ -13,4 +21,5 @@
     justify-content: center;
     align-items: center;
     border: .1px solid #cf9d9d;   /* Aggiungi un bordo */
+    z-index: 9999;
 }

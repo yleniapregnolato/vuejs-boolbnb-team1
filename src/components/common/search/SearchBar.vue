@@ -23,7 +23,6 @@ export default {
   <div class="ms_searchbar my-5 pe-4">
     <input
       type="text"
-      v-model="query"
       id="ms_input"
       placeholder="Cerca qualcosa.."
       @input="handleInput"
