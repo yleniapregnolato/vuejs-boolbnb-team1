@@ -35,15 +35,21 @@ export default {
 </script>
 
 <template>
-  <div class="row container m-auto">
-    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" v-for="city in cities" :key="city">
-      <div class="card m-5 w-100">
-        <a href="">
-          <img class="card-img-top ms_img" :src="city.link" alt="Card image cap" />
-          <div class="pt-1 text-center">
-            <h4 class="card-title">{{ city.name }}</h4>
-          </div>
-        </a>
+  <div class="container">
+    <nav class="navbar fixed-top navbar-light bg-light">
+      <!-- Contenuto della navbar -->
+    </nav>
+    
+    <div class="row mt-5">
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" v-for="city in cities" :key="city.name">
+        <div class="card m-5 w-100">
+          <a href="">
+            <img class="card-img-top ms_img" :src="city.link" alt="Card image cap" />
+            <div class="pt-1 text-center">
+              <h4 class="card-title">{{ city.name }}</h4>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -61,4 +67,12 @@ a {
   object-position: center;
 }
 
+.navbar {
+  z-index: 1000; /* Assicurati che la navbar sia sempre sopra le carte */
+}
+
+.card {
+  position: relative;
+  z-index: -1; /* Assicurati che le carte siano sotto la navbar */
+}
 </style>

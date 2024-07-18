@@ -29,7 +29,7 @@ export default {
 
 <template>
     <div>
-        <div class="w-75 m-auto d-flex justify-content-between pt-4">
+        <div class="w-75 m-auto d-flex justify-content-between pt-5 mt-2">
             <div>
                 <span>Adulti</span>
             </div>

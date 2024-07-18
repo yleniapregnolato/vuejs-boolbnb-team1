@@ -18,16 +18,16 @@ export default {
     <div class="container font">
       <a class="navbar-brand font-color-b" href="#">BOOBLBNB</a>
       <ul class="d-flex navbar-nav-custom gap-2 mb-2 mb-lg-0 align-items-center">
-        <li class="nav-item ms_li"><router-link class="nav-link">Login</router-link></li>
-        <li class="nav-item ms_li"><router-link class="nav-link">Registrati</router-link></li>
+        <li class="nav-item ms_li"><router-link to="/" class="nav-link">Login</router-link></li>
+        <li class="nav-item ms_li"><router-link to="/" class="nav-link">Registrati</router-link></li>
       </ul>
       <button class="navbar-toggler d-lg-none" type="button" @click="toggleNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div :class="['collapse', 'navbar-collapse', { show: isNavbarOpen }]" id="navbarSupportedContent">
         <ul class="d-flex flex-column gap-3 ms-auto mb-4 mb-lg-0 d-lg-none">
-          <li class="nav-item ms_li_nax"><router-link class="nav-link">Login</router-link></li>
-          <li class="nav-item ms_li_nax"><router-link class="nav-link">Registrati</router-link></li>
+          <li class="nav-item ms_li_nax"><router-link to="/" class="nav-link">Login</router-link></li>
+          <li class="nav-item ms_li_nax"><router-link to="/" class="nav-link">Registrati</router-link></li>
         </ul>
       </div>
     </div>
