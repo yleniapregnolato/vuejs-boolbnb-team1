@@ -37,12 +37,18 @@ export default {
         transform: scale(105%);
         border-radius: 5px;
     }
+
+    &:hover {
+        box-shadow: 2px 2px 5px var(--primary-color);
+    }
     
     cursor: pointer;
     box-shadow: 2px 2px 0px var(--primary-color);
+    transition: all 0.5s;
 
     .overflow-hidden {
         border-radius: 0.375rem 0.375rem 0 0;
+        
     }
     .card-image {
     object-fit: cover;
