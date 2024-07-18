@@ -2,12 +2,15 @@
 import { mapState, mapMutations, mapActions } from 'vuex';
 
 export default {
+  mounted(){
+    this.$store.dispatch('fetchFlats');
+  },
   computed: {
     ...mapState(['query', 'suggestions', 'selectedSuggestion'])
   },
   methods: {
     ...mapMutations(['setQuery']),
-    ...mapActions(['fetchSuggestions', 'selectSuggestion']),
+    ...mapActions(['fetchSuggestions', 'selectSuggestion', 'cercaAppartamenti']),
     handleInput(event) {
       this.setQuery(event.target.value);
       this.fetchSuggestions();
@@ -36,19 +39,9 @@ export default {
         {{ suggestion.address.freeformAddress }}
       </a>
     </div>
-    <input
-      type="hidden"
-      :value="selectedSuggestion ? selectedSuggestion.position.lat : ''"
-      id="latitude"
-    />
-    <input
-      type="hidden"
-      :value="selectedSuggestion ? selectedSuggestion.position.lon : ''"
-      id="longitude"
-    />
   </div>
   <div>
-    <button class="ms_button mt-5">Cerca</button>
+    <button class="ms_button mt-5" @click="cercaAppartamenti()">Cerca</button>
   </div>
 </template>
 
