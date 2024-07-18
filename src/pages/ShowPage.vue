@@ -1,15 +1,25 @@
 <script>
 import axios from "axios";
+import ContactHostModal from '../components/partials/ContactHostModal.vue';
 export default {
-    props: {
-            flats: Object,
-        },
+    components: {
+        ContactHostModal,
+    },
     data() {
         return {
-            
+            flat: {
+
+            }
         };
     },
-   
+   created() {
+    const slug = this.$route.params.slug;
+
+    axios.get(`http://127.0.0.1:8000/api/flats/${slug}`).then((resp)=> {
+        this.flat = resp.data
+        console.log(this.flat.id);
+    })
+   }
 }
 </script>
 
@@ -24,7 +34,7 @@ export default {
 
             <!-- info appartamento -->
             <section>
-                <h1>{{ flat.title }}</h1>
+                <h1>{{ flat.title }} {{ flat.id }}</h1>
             </section>
             <!-- /info appartamento -->
 
@@ -34,6 +44,8 @@ export default {
             </section>
             <!-- /mappa -->
         </div>
+
+        <ContactHostModal :flatId="flat.id" />
 
     </div>
 </template>
