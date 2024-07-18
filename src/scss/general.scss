@@ -1,7 +1,10 @@
 // Bootstrap
+@use './header.scss' as *;
 @import '@fortawesome/fontawesome-free/css/all.css';
 @import "bootstrap/scss/bootstrap";
 @import 'vue-cal/dist/vuecal.css';
+
+
 
 .vuecal__cell {
     width: calc(100% / 7) !important;  /* Imposta la larghezza delle celle */

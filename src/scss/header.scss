@@ -1,27 +1,31 @@
 @import "bootstrap/scss/bootstrap";
 $header-bg : #F8F2EB;
 
-ul{
+ul {
     list-style-type: none;
 }
-.ms_minh{
-    min-height: 70px;
+
+.ms_minh {
+    height: 10vh;
+    margin-bottom: 10vh;
 }
+
 .bg-header {
     background-color: black;
 }
-.ms_headernav{ 
+
+.ms_headernav {
     position: fixed;
     z-index: 999;
     background-color: $header-bg;
     width: 100%;
 }
 
-.font-color-b{
+.font-color-b {
     color: #705D3F;
 }
 
-.font{
+.font {
     font-weight: 400;
     letter-spacing: 2px;
 }

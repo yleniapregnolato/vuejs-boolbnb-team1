@@ -14,7 +14,7 @@ export default {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg ms_headernav ms_minh">
+  <nav class="navbar navbar-expand-lg ms_headernav ms_minh p-0">
     <div class="container font">
       <a class="navbar-brand font-color-b" href="#">BOOBLBNB</a>
       <ul class="d-flex navbar-nav-custom gap-2 mb-2 mb-lg-0 align-items-center">
