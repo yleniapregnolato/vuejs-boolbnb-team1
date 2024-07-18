@@ -1,9 +1,11 @@
 <template>
     <div class="containerMain">
+
       <div @click.stop="toggleDestination" class="ContainerSearch destinazione">
         <i class="fa-solid fa-location-dot"></i>
         <span class="pl1rem">Destinazioni</span>
       </div>
+
       <div v-if="isDestinationActive" class="AfterDestinazione">
         <SearchBar />
       </div>

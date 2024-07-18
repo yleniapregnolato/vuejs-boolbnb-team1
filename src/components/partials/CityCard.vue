@@ -36,9 +36,6 @@ export default {
 
 <template>
   <div class="container">
-    <nav class="navbar fixed-top navbar-light bg-light">
-      <!-- Contenuto della navbar -->
-    </nav>
     
     <div class="row mt-5">
       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" v-for="city in cities" :key="city.name">

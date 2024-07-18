@@ -18,7 +18,7 @@ const store = createStore({
         };
     },
     mutations: {
-        toggleDestination(state) {
+        toggleDestination(state) {            
             state.isDestinationActive = !state.isDestinationActive;
             if (state.isDestinationActive) {
                 state.isDateActive = false;
