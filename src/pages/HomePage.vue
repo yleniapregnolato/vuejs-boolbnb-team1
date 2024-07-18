@@ -3,11 +3,6 @@ import { mapState, mapMutations } from 'vuex';
 import SearchComponent from '../components/common/search/SearchComponent.vue';
 import CityCard from '../components/partials/CityCard.vue';
 import Footer from '../components/Footer.vue';
-
-export default {
-  name: "HomePage",
-  components: { SearchComponent, CityCard, Footer},
-
 import Flat_card from '../components/partials/Flat_card.vue';
 import FlatsNotFound from '../components/partials/FlatsNotFound.vue';
 
