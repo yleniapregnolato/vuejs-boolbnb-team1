@@ -3,6 +3,11 @@ import { mapState, mapMutations } from 'vuex';
 import SearchComponent from '../components/common/search/SearchComponent.vue';
 import CityCard from '../components/partials/CityCard.vue';
 import Footer from '../components/Footer.vue';
+
+export default {
+  name: "HomePage",
+  components: { SearchComponent, CityCard, Footer},
+
 import Flat_card from '../components/partials/Flat_card.vue';
 import FlatsNotFound from '../components/partials/FlatsNotFound.vue';
 
@@ -10,6 +15,7 @@ import FlatsNotFound from '../components/partials/FlatsNotFound.vue';
 export default {
   name: "HomePage",
   components: { SearchComponent, CityCard, Footer, Flat_card, FlatsNotFound },
+
 
   computed: {
     ...mapState([
@@ -39,6 +45,7 @@ export default {
       </div>
     </div>
   </div>
+
   <!-- flats researched -->
   <div class="container mt-5">
     <div class="row g-4" v-if="foundedFlats.length > 1">
@@ -54,7 +61,7 @@ export default {
     </div>
   </div>
   <!-- /flats researched -->
-  
+
   <!-- Card -->
   <CityCard />
   <!-- /Card -->
