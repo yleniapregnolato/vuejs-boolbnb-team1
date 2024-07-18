@@ -36,6 +36,16 @@ export default {
             console.log('Data selezionata:', date);
         },
     },
+    mounted() {
+        // Aggiungi l'event listener passivo qui
+        const vueCalElement = this.$refs.vuecal.$el;
+        vueCalElement.addEventListener('scroll', this.customEventHandler, { passive: true });
+    },
+    beforeDestroy() {
+        // Rimuovi l'event listener quando il componente viene distrutto
+        const vueCalElement = this.$refs.vuecal.$el;
+        vueCalElement.removeEventListener('scroll', this.customEventHandler);
+    }
 };
 </script>
 
