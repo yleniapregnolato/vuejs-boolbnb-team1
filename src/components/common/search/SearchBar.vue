@@ -5,12 +5,22 @@ export default {
   data() {
     return {
       clicked: true,
-      selected: ''
+      selected: '',
+      avServices: [],
+      checcate: []
     };
   },
   mounted() {
     this.$store.dispatch('fetchFlats');
     document.addEventListener('click', this.handleClickOutside);
+    fetch(`http://127.0.0.1:8000/api/services`)
+    .then(response => response.json())
+    .then(data => {
+        this.avServices = data;
+    })
+    .catch(error => {
+        console.error('Errore durante il fetch:', error);
+    });
   },
   beforeDestroy() {
     document.removeEventListener('click', this.handleClickOutside);
@@ -36,6 +46,11 @@ export default {
       if (!this.$el.contains(event.target)) {
         this.clicked = false;
       }
+    },
+    getFilter(){
+      // prendo tutti elementi con attributo name che inizia con service
+      let arrayCheckedElem = document.querySelectorAll('[name = "services[]"]:checked')
+      console.log(arrayCheckedElem);
     }
   }
 };
@@ -68,17 +83,17 @@ export default {
   <div v-if="filtersDropdownVisible" class="filters-dropdown">
     <!-- Aggiungi qui i tuoi filtri -->
     <div class="filter-item">
-      <label for="wifi">WiFi</label>
-      <input type="checkbox" id="wifi" />
-    </div>
-    <div class="filter-item">
-      <label for="parking">Parcheggio</label>
-      <input type="checkbox" id="parking" />
+      <ul id="service-list">
+        <li v-for="service in avServices">
+          <label :for="service.name">{{ service.name }}</label>
+          <input type="checkbox" :id="service.name" name="services[]"/>
+        </li>
+      </ul>
     </div>
     <!-- Aggiungi altri filtri qui -->
   </div>
 
-  <button class="ms_button rounded-4" @click="cercaAppartamenti()">Cerca</button>
+  <button class="ms_button rounded-4" @click="getFilter()">Cerca</button>
 </div>
 </template>
 
@@ -122,7 +137,12 @@ $bg-main : #F8F2EB;
   outline: none;
 }
 
-/* Stile searchBar */
+/* / Stile searchBar */
+
+#service-list{
+  font-size:medium;
+}
+
 
 .ms_button {
   padding: 16px 24px;
@@ -202,5 +222,6 @@ $bg-main : #F8F2EB;
         }
     }
 }
+
 
 </style>

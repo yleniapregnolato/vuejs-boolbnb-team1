@@ -80,7 +80,6 @@ export default {
 <style lang="scss" scoped>
 .ms_container{
   width: 100%;
-  padding-top: 70px;
 }
 .bannerCont {
   width: 100%;
