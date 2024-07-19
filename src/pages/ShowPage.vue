@@ -13,6 +13,8 @@ export default {
         return {
             flat: {},
             flatServices: [],
+            lat: 0,
+            lon: 0
         };
     },
     created() {
@@ -21,6 +23,9 @@ export default {
         axios.get(`http://127.0.0.1:8000/api/flats/${slug}`).then((resp) => {
             this.flat = resp.data;
             this.flatServices = resp.data.services;
+            this.lat = this.flat.latitude;
+            this.lon = this.flat.longitude;
+            console.log(this.lat,this.lon)
             // console.log(this.flat.id);
         });
     }
@@ -77,7 +82,7 @@ export default {
                 <div class="col-3">
                     <!-- mappa -->
                     <section>
-                        <FlatMap />
+                        <FlatMap :lat="lat" :lon="lon" />
                     </section>
                     <!-- /mappa -->
                 </div>
