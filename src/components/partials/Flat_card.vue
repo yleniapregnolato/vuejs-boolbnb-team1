@@ -41,10 +41,6 @@ a {
         border-radius: 5px;
     }
 
-    &:hover {
-        box-shadow: 2px 2px 5px var(--primary-color);
-    }
-
     cursor: pointer;
     box-shadow: 2px 2px 0px var(--primary-color);
     transition: all 0.5s;
