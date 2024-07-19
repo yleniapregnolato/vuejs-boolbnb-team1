@@ -12,19 +12,19 @@ export default {
             }
         };
     },
-   created() {
-    const slug = this.$route.params.slug;
+    created() {
+        const slug = this.$route.params.slug;
 
-    axios.get(`http://127.0.0.1:8000/api/flats/${slug}`).then((resp)=> {
-        this.flat = resp.data
-        console.log(this.flat.id);
-    })
-   }
+        axios.get(`http://127.0.0.1:8000/api/flats/${slug}`).then((resp) => {
+            this.flat = resp.data
+            console.log(this.flat.id);
+        })
+    }
 }
 </script>
 
 <template>
-    <div class="show-container">
+    <div class="container show-container">
         <div class="ms_showcontainer">
             <!-- galleria immagini -->
             <section>
@@ -32,17 +32,52 @@ export default {
             </section>
             <!-- /galleria immagini -->
 
-            <!-- info appartamento -->
-            <section>
-                <h1>{{ flat.title }} {{ flat.id }}</h1>
-            </section>
-            <!-- /info appartamento -->
+            <div class="row">
+                <div class="col-8">
+                    <!-- info appartamento -->
+                    <section>
+                        <h2>{{ flat.title }} {{ flat.id }}</h2>
+                        <h4>{{ flat.address }}</h4>
+                        <!-- descrizione -->
+                        <p class="mt-4">{{ flat.description }}</p>
 
-            <!-- mappa -->
-            <section>
+                        <h5>Informazioni sulla struttura:</h5>
 
-            </section>
-            <!-- /mappa -->
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Numero massimo di ospiti</th>
+                                    <td>{{ flat.max_guests }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Camere disponibili</th>
+                                    <td>{{ flat.rooms }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Letti a disposizione</th>
+                                    <td>{{ flat.beds }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Bagni a disposizione</th>
+                                    <td>{{ flat.bathrooms }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    <!-- /info appartamento -->
+                </div>
+                <div class="col-3">
+                    <!-- mappa -->
+                    <section>
+                        <h2>mappa</h2>
+                    </section>
+                    <!-- /mappa -->
+                </div>
+
+            </div>
+
+
+
         </div>
 
         <ContactHostModal :flatId="flat.id" />
