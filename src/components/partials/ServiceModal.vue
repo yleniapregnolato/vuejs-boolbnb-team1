@@ -25,7 +25,7 @@ export default {
 
 <template>
     <!-- Modale servizi -->
-    <button @click="serviceModal" class="btn ms_brown_btn mt-4">Mostra tutti i servizi</button>
+    <button @click="serviceModal" class="btn ms_brown_btn mt-2 mb-2">Mostra tutti i servizi</button>
 
     <div class="modal ms_service-modal" :class="showServices ? 'd-block' : ''" tabindex="-1">
         <div class="modal-dialog">
@@ -53,7 +53,8 @@ export default {
 
 <style lang="scss" scoped>
 .ms_service-modal {
-    top: 30%;
+    top: 15%;
+    bottom: 10%;
 }
 
 .ms_brown_btn {

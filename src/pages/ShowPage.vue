@@ -13,8 +13,11 @@ export default {
         return {
             flat: {},
             flatServices: [],
+            photos: [],
             lat: 0,
-            lon: 0
+            lon: 0,
+            flatCoverImg: "http://127.0.0.1:8000/storage",
+            flatPhotosUrl: "http://127.0.0.1:8000/storage",
         };
     },
     created() {
@@ -23,21 +26,34 @@ export default {
         axios.get(`http://127.0.0.1:8000/api/flats/${slug}`).then((resp) => {
             this.flat = resp.data;
             this.flatServices = resp.data.services;
+            this.photos = resp.data.photos;
+            console.log(resp);
             this.lat = this.flat.latitude;
             this.lon = this.flat.longitude;
-            console.log(this.lat,this.lon)
+            // console.log(this.lat,this.lon)
             // console.log(this.flat.id);
+            console.log(this.flatPhotos);
         });
     }
 }
 </script>
 
 <template>
-    <div class="container show-container">
+    <div class="container show-container mb-5">
         <div class="ms_showcontainer">
+            <h1>{{ flat.title }} {{ flat.id }}</h1>
             <!-- galleria immagini -->
             <section>
-
+                <div class="row">
+                    
+                </div>
+                <img class="card-image img-fluid" :src="`${flatCoverImg}/${flat.main_img}`"
+                        alt="immagine di copertina" />
+                <ul>
+                    <li v-for="(photo, index) in photos" :key="index">
+                        <img :src="`${flatPhotosUrl}/${photo.image}`" alt="immagini" />
+                    </li>
+                </ul>
             </section>
             <!-- /galleria immagini -->
 
@@ -45,14 +61,14 @@ export default {
                 <div class="col-8">
                     <!-- info appartamento -->
                     <section>
-                        <h2>{{ flat.title }} {{ flat.id }}</h2>
+                        
                         <h4>{{ flat.address }}</h4>
                         <!-- descrizione -->
                         <p class="mt-4">{{ flat.description }}</p>
 
                         <h5>Informazioni sulla struttura:</h5>
 
-                        <table class="table">
+                        <table class="table mt-4">
                             <tbody>
                                 <tr>
                                     <th scope="row">Numero massimo di ospiti</th>
@@ -73,11 +89,16 @@ export default {
                             </tbody>
                         </table>
 
-                        <!-- modale servizi -->
-                        <ServiceModal :services="flatServices"/>
-                        <!-- /modale servizi -->
+
                     </section>
                     <!-- /info appartamento -->
+                    <!-- modale servizi -->
+                    <ServiceModal :services="flatServices" />
+                    <!-- /modale servizi -->
+
+                    <!-- modale contatti -->
+                    <ContactHostModal :flatId="flat.id" />
+                    <!-- modale contatti -->
                 </div>
                 <div class="col-3">
                     <!-- mappa -->
@@ -86,15 +107,9 @@ export default {
                     </section>
                     <!-- /mappa -->
                 </div>
-
+                
             </div>
-
-
-
         </div>
-
-        <ContactHostModal :flatId="flat.id" />
-
     </div>
 </template>
 
@@ -108,5 +123,10 @@ export default {
         gap: 1rem;
         margin-top: 60px;
     }
+
+    .card-image {
+        width: 500px;
+    }
+    
 }
 </style>
