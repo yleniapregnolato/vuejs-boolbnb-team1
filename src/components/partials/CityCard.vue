@@ -1,37 +1,38 @@
 <script>
 import { mapState } from "vuex";
+import { storejs } from "../../store";
 export default {
   props: {},
   data() {
-    return {};
+    return {
+      storejs,
+    };
+    
   },
-  computed: {
-    ...mapState(["cities"]),
+  methods: {
+    getImagePath(image) {
+      return new URL(`../../assets/img/${image}`, import.meta.url).href;
+    }
   },
+  props: {
+    city: Object,
+  }
+
 };
 </script>
 
 <template>
-  <div class="container">
-    <div class="row mt-5">
-      <div
-        class="col-xl-2 col-lg-2 col-md-6 col-sm-12"
-        v-for="city in cities"
-        :key="city.name"
-      >
-        <div class="card m-5 w-100 rounded card-hover ms_csrd">
+
+        <div class="card rounded card-hover ms_card">
           <img
             class="card-img-top ms_img rounded"
-            :src="city.link"
+            :src="getImagePath(city.link)"
             alt="Card image cap"
           />
           <div class="card-img-overlay text-center text-white rounded overlay">
             <h4 class="card-title font">{{ city.name }}</h4>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 </template>
 
 <style scoped lang="scss">
@@ -40,8 +41,9 @@ a {
   color: black;
 }
 
-.ms_csrd {
-  z-index: -1;
+.ms_card {
+  cursor: pointer;
+
 }
 .ms_img {
   height: 40vh;
@@ -55,6 +57,7 @@ a {
 
 .card {
   position: relative;
+
 }
 
 .font {
@@ -74,7 +77,7 @@ a {
   justify-content: flex-end;
   padding: 1rem;
   background-color: rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s ease;
+  transition: background-color 0.5s ease;
 }
 
 .card-hover:hover .overlay {

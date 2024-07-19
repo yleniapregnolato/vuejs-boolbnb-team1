@@ -5,9 +5,15 @@ import CityCard from '../components/partials/CityCard.vue';
 import Footer from '../components/Footer.vue';
 import Flat_card from '../components/partials/Flat_card.vue';
 import FlatsNotFound from '../components/partials/FlatsNotFound.vue';
+import { storejs } from '../store';
 
 
 export default {
+  data() {
+    return {
+      storejs,
+    }
+  },
   name: "HomePage",
   components: { SearchComponent, CityCard, Footer, Flat_card, FlatsNotFound },
 
@@ -43,7 +49,7 @@ export default {
   </div>
 
   <!-- flats researched -->
-  <div class="container mt-5">
+  <div class="container my-5" v-if="searchActive">
     <div class="row g-4" v-if="foundedFlats.length > 1">
       <div class="col-12 col-md-6 col-lg-4 col-xl-3" v-for="flat in foundedFlats" :key="flat">
         <Flat_card :flat="flat" />
@@ -59,7 +65,14 @@ export default {
   <!-- /flats researched -->
 
   <!-- Card -->
-  <CityCard />
+   <div class="container my-5">
+    <div class="row g-2">
+      <div class="col-4 col-lg-2" v-for="city in storejs.city_img" :key="city">
+        <CityCard :city="city"/>
+      </div>
+    </div>
+   </div>
+
   <!-- /Card -->
 </div>
 </template>
