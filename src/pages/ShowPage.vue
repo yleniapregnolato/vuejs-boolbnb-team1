@@ -28,6 +28,7 @@ export default {
             console.log(this.lat,this.lon)
             // console.log(this.flat.id);
         });
+        window.scroll(0, 0);
     }
 }
 </script>

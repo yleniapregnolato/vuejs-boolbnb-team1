@@ -1,6 +1,7 @@
 <script>
-import { mapState } from "vuex";
+
 import { storejs } from "../../store";
+import { mapActions } from "vuex/dist/vuex.cjs.js";
 export default {
   props: {},
   data() {
@@ -12,8 +13,11 @@ export default {
   methods: {
     getImagePath(image) {
       return new URL(`../../assets/img/${image}`, import.meta.url).href;
-    }
-  },
+    },
+    
+    ...mapActions(['cercaAppartamenti' , 'setLatLon']),
+  }
+  ,
   props: {
     city: Object,
   }
@@ -23,7 +27,7 @@ export default {
 
 <template>
 
-        <div class="card rounded card-hover ms_card">
+        <div class="card rounded card-hover ms_card" @click="setLatLon(city)">
           <img
             class="card-img-top ms_img rounded"
             :src="getImagePath(city.link)"
