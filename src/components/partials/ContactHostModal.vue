@@ -1,10 +1,7 @@
 <script>
 export default {
   props: {
-    flatId: {
-      type: String,
-      required: true,
-    },
+    flatId: Number,
   },
   data() {
     return {
