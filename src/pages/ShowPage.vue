@@ -41,19 +41,23 @@ export default {
 <template>
     <div class="container show-container mb-5">
         <div class="ms_showcontainer">
-            <h1>{{ flat.title }} {{ flat.id }}</h1>
+            <h2>{{ flat.title }} {{ flat.id }}</h2>
             <!-- galleria immagini -->
             <section>
-                <div class="row">
-                    
+                <div class="row ms_heigth">
+                    <div class="col-6 p-0 h-100">
+                        <img class="card-image img-fluid ms_photos" :src="`${flatCoverImg}/${flat.main_img}`"
+                            alt="immagine di copertina" />
+                    </div>
+
+                    <div class="col-6 p-0 h-100">
+                        <div class="row h-100">
+                            <div class="col-6 h-50 p-0" v-for="(photo, index) in photos" :key="index">
+                                <img class="ms_photos img-fluid" :src="`${flatPhotosUrl}/${photo.image}`" alt="immagini" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <img class="card-image img-fluid" :src="`${flatCoverImg}/${flat.main_img}`"
-                        alt="immagine di copertina" />
-                <ul>
-                    <li v-for="(photo, index) in photos" :key="index">
-                        <img :src="`${flatPhotosUrl}/${photo.image}`" alt="immagini" />
-                    </li>
-                </ul>
             </section>
             <!-- /galleria immagini -->
 
@@ -61,7 +65,7 @@ export default {
                 <div class="col-8">
                     <!-- info appartamento -->
                     <section>
-                        
+
                         <h4>{{ flat.address }}</h4>
                         <!-- descrizione -->
                         <p class="mt-4">{{ flat.description }}</p>
@@ -107,7 +111,7 @@ export default {
                     </section>
                     <!-- /mappa -->
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -115,8 +119,16 @@ export default {
 
 <style lang="scss" scoped>
 .show-container {
+
     padding: 1rem;
 
+    .ms_heigth {
+        height: 400px;
+    }
+    .ms_photos {
+        object-fit: cover;
+        height: 100%;
+    }
     .ms_showcontainer {
         display: flex;
         flex-direction: column;
@@ -127,6 +139,5 @@ export default {
     .card-image {
         width: 500px;
     }
-    
-}
-</style>
+
+}</style>
