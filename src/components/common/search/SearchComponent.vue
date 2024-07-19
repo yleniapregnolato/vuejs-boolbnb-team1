@@ -1,7 +1,10 @@
 <template>
     <div class="containerMain">
+      <SearchBar />
+      <!-- Togliere tutte le funzioni associate -->
 
-      <div @click.stop="toggleDestination" class="ContainerSearch destinazione">
+
+      <!-- <div @click.stop="toggleDestination" class="ContainerSearch destinazione">
         <i class="fa-solid fa-location-dot"></i>
         <span class="pl1rem">Destinazioni</span>
       </div>
@@ -31,7 +34,10 @@
         <AppPeople />
       </div>
   
-      <button class="btn btn-primary rounded-pill py-2" type="button">Cerca</button>
+      <button class="btn btn-primary rounded-pill py-2" type="button">Cerca</button> -->
+
+
+      <!-- / Elimina -->
     </div>
   </template>
   
@@ -78,7 +84,6 @@
     gap: 1rem;
     position: relative;
     width: 100%;
-    height: 100%;
   }
   
   .ContainerSearch {
