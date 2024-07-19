@@ -2,14 +2,18 @@
 import { mapState, mapMutations, mapActions } from 'vuex';
 
 export default {
-  data(){
-    return{
-      clicked:true,
-      selected : ''
+  data() {
+    return {
+      clicked: true,
+      selected: ''
     };
   },
-  mounted(){
+  mounted() {
     this.$store.dispatch('fetchFlats');
+    document.addEventListener('click', this.handleClickOutside);
+  },
+  beforeDestroy() {
+    document.removeEventListener('click', this.handleClickOutside);
   },
   computed: {
     ...mapState(['query', 'suggestions', 'selectedSuggestion', 'filtersDropdownVisible'])
@@ -21,20 +25,24 @@ export default {
       this.setQuery(event.target.value);
       this.fetchSuggestions();
       this.clicked = true;
-      console.log(this.selected);
     },
     toggleFilters() {
       this.toggleFiltersDropdown();
     },
-    toggleClick(){
+    toggleClick() {
       this.clicked = false;
+    },
+    handleClickOutside(event) {
+      if (!this.$el.contains(event.target)) {
+        this.clicked = false;
+      }
     }
   }
 };
 </script>
 
 <template>
-<div class="container-fluid d-flex align-items-center" @click="toggleClick()">
+<div class="container-fluid d-flex align-items-center">
   <div class="ms_searchbar rounded-4 my-5 pe-4">
     <input
       type="text"
@@ -58,20 +66,20 @@ export default {
   </div>
   <!-- Bottone per filtri -->
   <button class="ms_button rounded-4" @click="toggleFilters">Filtri</button>
-    <div v-if="filtersDropdownVisible" class="filters-dropdown">
-      <!-- Aggiungi qui i tuoi filtri -->
-      <div class="filter-item">
-        <label for="wifi">WiFi</label>
-        <input type="checkbox" id="wifi" />
-      </div>
-      <div class="filter-item">
-        <label for="parking">Parcheggio</label>
-        <input type="checkbox" id="parking" />
-      </div>
-      <!-- Aggiungi altri filtri qui -->
+  <div v-if="filtersDropdownVisible" class="filters-dropdown">
+    <!-- Aggiungi qui i tuoi filtri -->
+    <div class="filter-item">
+      <label for="wifi">WiFi</label>
+      <input type="checkbox" id="wifi" />
     </div>
-  
-    <button class="ms_button rounded-4" @click="cercaAppartamenti()">Cerca</button>
+    <div class="filter-item">
+      <label for="parking">Parcheggio</label>
+      <input type="checkbox" id="parking" />
+    </div>
+    <!-- Aggiungi altri filtri qui -->
+  </div>
+
+  <button class="ms_button rounded-4" @click="cercaAppartamenti()">Cerca</button>
 </div>
 </template>
 
