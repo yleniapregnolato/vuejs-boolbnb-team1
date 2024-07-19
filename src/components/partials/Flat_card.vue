@@ -40,10 +40,12 @@ a {
         transform: scale(105%);
         border-radius: 5px;
     }
-
-    cursor: pointer;
-    box-shadow: 2px 2px 0px var(--primary-color);
-    transition: all 0.5s;
+    
+    & {
+        cursor: pointer;
+        box-shadow: 2px 2px 0px var(--primary-color);
+        transition: all 0.5s;
+    }
     
 
     .overflow-hidden {
