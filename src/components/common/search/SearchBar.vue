@@ -49,8 +49,7 @@ export default {
         v-for="(suggestion, index) in suggestions"
         :key="index"
         class="dropdown-item"
-        @click.prevent="selectSuggestion(suggestion)"
-        @click="this.selected = suggestion.address.freeformAddress"
+        @click.prevent="selectSuggestion(suggestion), this.selected = suggestion.address.freeformAddress"  
       >
         {{ suggestion.address.freeformAddress }}
       </a>

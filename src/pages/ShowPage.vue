@@ -23,6 +23,7 @@ export default {
             this.flatServices = resp.data.services;
             // console.log(this.flat.id);
         });
+        window.scroll(0, 0);
     }
 }
 </script>

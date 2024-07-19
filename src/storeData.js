@@ -83,6 +83,11 @@ const store = createStore({
     setSearchActive(state) {
       state.searchActive = true;
     },
+    setCoordinates(state, city) {
+      state.lon = city.lon;
+      state.lat = city.lat;
+      console.log(state.lon);
+    }
   },
   actions: {
     fetchFlats({commit, state}){
@@ -119,13 +124,17 @@ const store = createStore({
         state.foundedFlats = [];
         commit("setSearchActive");
         commit("closeAll");
+        console.log('erntaro');
         for (const flat of state.allFlats) {
           const d = await dispatch('getDistanceFromLatLonInKm', { lat2: flat.latitude, lon2: flat.longitude });
           if (d < state.radius) {
             commit('setFoundedFlats', flat);
           }
         }
-        console.log(state.foundedFlats);
+        // console.log(state.foundedFlats);
+        const mainElem = document.querySelector('.containerMain');
+        const x = mainElem.offsetHeight + mainElem.offsetTop;
+        window.scroll(0, x);
       },
       getDistanceFromLatLonInKm({ state }, { lat2, lon2 }) {
         const R = 6371; // Raggio della Terra in chilometri
@@ -142,6 +151,10 @@ const store = createStore({
         console.log('Distanza:', d); // Per visualizzare la distanza calcolata
         return d;
       },
+      async setLatLon({dispatch, commit}, city ) {
+        commit('setCoordinates', city);
+        await dispatch('cercaAppartamenti');
+      }
   },
 });
 

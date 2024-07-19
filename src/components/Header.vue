@@ -11,7 +11,7 @@ export default {
 
 <template>
 
-  <nav class="navbar navbar-expand-lg ms_headernav">
+  <nav class="navbar navbar-expand-lg ms_headernav sticky-top">
     <div class="container-fluid">
       <router-link class="navbar-brand font" to="/">BoolBnB</router-link>
       <button class="navbar-toggler font border" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
