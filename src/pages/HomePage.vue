@@ -28,14 +28,15 @@ export default {
 </script>
 
 <template>
+<div class="ms_container">
   <div class="bannerCont">
-    <img @click="closeAll" class="w-100 h-100"
-      src="https://images.trvl-media.com/lodging/22000000/21640000/21634100/21634022/1748237f_w.jpg?impolicy=fcrop&w=600&h=400&p=1&q=high"
+    <img @click="closeAll"
+      src="https://cdn.discordapp.com/attachments/1260526842679660585/1263791478610591834/1-roma-dall-alto-copertina_wide.png?ex=669b8508&is=669a3388&hm=063941407d6e321e2c0e4175f7dc3f486c76ff38d4fb5f5275b021f0bfc384a9&"
       alt="">
     <div class="ms_externalContent">
-      <p @click="closeAll">Prenota case al mare, ville e appartamenti in tutto il mondo
+      <p class="text-center mx-2" @click="closeAll">Prenota case al mare, ville e appartamenti in tutta Italia
       </p>
-      <div class="containerSerch">
+      <div class="container">
         <SearchComponent />
       </div>
     </div>
@@ -60,13 +61,17 @@ export default {
   <!-- Card -->
   <CityCard />
   <!-- /Card -->
-  
+</div>
 </template>
 
 <style lang="scss" scoped>
+.ms_container{
+  width: 100%;
+  padding-top: 70px;
+}
 .bannerCont {
   width: 100%;
-  height: 70vh;
+  height: 500px;
   background-color: rgb(0, 0, 0);
   position: relative;
 
@@ -79,23 +84,17 @@ export default {
   }
 
   .ms_externalContent {
-    width: 80%;
+    width: 60%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
     p {
-      font-weight: 500;
-      letter-spacing: 1px;
-      font-size: 3.5rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      font-size: 3.2rem;
       color: white;
-    }
-
-    .containerSerch {
-      background-color: rgb(253, 246, 239);
-      padding: 1.3rem;
-      border-radius: 1rem;
     }
   }
 }
