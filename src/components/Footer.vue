@@ -6,9 +6,9 @@ export default {};
   <div class="container-fluid ms_bg_footer p-3">
     <footer class="container">
       <!-- Logo -->
-      <div class="mb-3 ms_logo">
+      <div class="mb-3">
         <a href="#">
-          <h2>BoolBnB/logo</h2>
+          <h2 class="ms_logo">BoolBnB/logo</h2>
         </a>
       </div>
       <!-- /Logo -->
@@ -16,7 +16,7 @@ export default {};
       <div class="row">
         <!-- Sezione sinistra -->
         <div class="col-md-4">
-          <h6 class="font-color-b">BoolBnb</h6>
+          <h6 class="">BoolBnb</h6>
           <ul class="list-unstyled">
             <li><a href="">Pubblica il tuo annuncio</a></li>
             <li><a href="">Prenotazione sicura</a></li>
@@ -46,7 +46,7 @@ export default {};
 
         <!-- Sezione destra -->
         <div class="col-md-4">
-          <h6 class="font-color-b">Ti presentiamo la famiglia boolbnb</h6>
+          <h6 class="">Ti presentiamo la famiglia boolbnb</h6>
           <ul class="list-unstyled">
             <li><a href="">BoolBnb</a></li>
             <li><a href="">Abritel.fr</a></li>
@@ -77,6 +77,12 @@ export default {};
 @use "../scss/footer.scss" as *;
 
 .ms_bg_footer {
-  background-color: $header-bg;
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+
+  .ms_logo {
+    color: var(--bg-color);
+  }
+  
 }
 </style>
