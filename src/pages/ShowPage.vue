@@ -1,24 +1,28 @@
 <script>
 import axios from "axios";
 import ContactHostModal from '../components/partials/ContactHostModal.vue';
+import FlatMap from '../components/partials/FlatMap.vue';
+import ServiceModal from '../components/partials/ServiceModal.vue';
 export default {
     components: {
         ContactHostModal,
+        FlatMap,
+        ServiceModal,
     },
     data() {
         return {
-            flat: {
-
-            }
+            flat: {},
+            flatServices: [],
         };
     },
     created() {
         const slug = this.$route.params.slug;
 
         axios.get(`http://127.0.0.1:8000/api/flats/${slug}`).then((resp) => {
-            this.flat = resp.data
-            console.log(this.flat.id);
-        })
+            this.flat = resp.data;
+            this.flatServices = resp.data.services;
+            // console.log(this.flat.id);
+        });
     }
 }
 </script>
@@ -63,13 +67,17 @@ export default {
                                 </tr>
                             </tbody>
                         </table>
+
+                        <!-- modale servizi -->
+                        <ServiceModal :services="flatServices"/>
+                        <!-- /modale servizi -->
                     </section>
                     <!-- /info appartamento -->
                 </div>
                 <div class="col-3">
                     <!-- mappa -->
                     <section>
-                        <h2>mappa</h2>
+                        <FlatMap />
                     </section>
                     <!-- /mappa -->
                 </div>
