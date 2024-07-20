@@ -224,6 +224,7 @@ $bg-main : #F8F2EB;
 }
 
 .dropdown-item {
+  color: var(--primary-color);
   padding: 8px 16px;
   cursor: pointer;
   border-radius: 5px;
