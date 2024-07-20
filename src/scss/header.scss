@@ -1,7 +1,6 @@
 @import "bootstrap/scss/bootstrap";
 
 .ms_headernav {
-    position: fixed;
     z-index: 999;
     background-color: var(--primary-color);
     width: 100%;
@@ -11,5 +10,5 @@
 .font {
     font-weight: 400;
     color: var(--bg-color);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }

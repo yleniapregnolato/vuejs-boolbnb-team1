@@ -74,7 +74,7 @@
   
   <style lang="scss" scoped>
   * {
-    color: rgb(115, 97, 97);
+    color: var(--primary-color);
   }
   
   .containerMain {
