@@ -1,21 +1,36 @@
 <script>
 
 import { storejs } from "../../store";
-import { mapActions } from "vuex/dist/vuex.cjs.js";
+import { mapActions, mapMutations } from "vuex/dist/vuex.cjs.js";
 export default {
   props: {},
   data() {
     return {
       storejs,
-    };
+    }
     
   },
   methods: {
     getImagePath(image) {
       return new URL(`../../assets/img/${image}`, import.meta.url).href;
     },
+    getFilter(){
+      // prendo tutti elementi con attributo name=services[] e che sono checked
+      let arrayCheckedElem = document.querySelectorAll('[name = "services[]"]:checked');
+      
+      const services = []
+      
+      arrayCheckedElem.forEach(element => {
+        services.push(parseInt(element.value));
+      });
+
+      console.log('checkedServices');
+      this.setFilterServices(services);
+    },
+  
     
     ...mapActions(['cercaAppartamenti' , 'setLatLon']),
+    ...mapMutations(['setFilterServices']),
   }
   ,
   props: {
@@ -27,7 +42,7 @@ export default {
 
 <template>
 
-        <div class="card rounded card-hover ms_card" @click="setLatLon(city)">
+        <div class="card rounded card-hover ms_card" @click=" getFilter(),setLatLon(city)">
           <img
             class="card-img-top ms_img rounded"
             :src="getImagePath(city.link)"

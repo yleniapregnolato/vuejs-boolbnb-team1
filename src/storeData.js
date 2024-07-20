@@ -27,6 +27,7 @@ const store = createStore({
       foundedFlats : [],
       radius : 20,
       searchActive: false,
+      filter: {},
     };
   },
   mutations: {
@@ -86,17 +87,24 @@ const store = createStore({
     setCoordinates(state, city) {
       state.lon = city.lon;
       state.lat = city.lat;
-      console.log(state.lon);
+    },
+    setFilterServices(state, arrayServices) {
+      state.filter.services = arrayServices;
+      console.log(state.filter);
     }
   },
   actions: {
-    fetchFlats({commit, state}){
-        axios.get(state.fetchMyAPIPath + 'flats').then(r=> {
+    fetchFlats({commit, state, dispatch}){
+      
+      const data = state.filter;
+        axios.post(state.fetchMyAPIPath + 'flats', data).then(r=> {
             // Controllo che abbia preso correttamente i risultati dalla chiamata API
             console.log(r.data);
             commit('setAllFlats', r.data);
-            console.log(state.allFlats);
+            
+            dispatch('cercaAppartamenti');
         });
+        
     },
     async fetchSuggestions({ commit, state }) {
       if (state.query.length < 3) {
@@ -121,19 +129,22 @@ const store = createStore({
       commit("setSuggestions", []);
     },
     async cercaAppartamenti({ dispatch, state, commit }) {
+      console.log('cerco');
         state.foundedFlats = [];
+        
         commit("setSearchActive");
         commit("closeAll");
-        console.log('erntaro');
         for (const flat of state.allFlats) {
           const d = await dispatch('getDistanceFromLatLonInKm', { lat2: flat.latitude, lon2: flat.longitude });
           if (d < state.radius) {
             commit('setFoundedFlats', flat);
           }
         }
-        // console.log(state.foundedFlats);
-        const mainElem = document.querySelector('.containerMain');
-        const x = mainElem.offsetHeight + mainElem.offsetTop;
+        console.log(state.foundedFlats);
+
+        const mainElem = document.querySelector('.bannerCont');
+        const headerElem = document.querySelector('.navbar')
+        const x = mainElem.offsetHeight + mainElem.offsetTop - headerElem.offsetHeight ;
         window.scroll(0, x);
       },
       getDistanceFromLatLonInKm({ state }, { lat2, lon2 }) {
@@ -148,12 +159,12 @@ const store = createStore({
             Math.sin(dLon / 2);
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         const d = R * c; // Distanza in chilometri
-        console.log('Distanza:', d); // Per visualizzare la distanza calcolata
+        // console.log('Distanza:', d); // Per visualizzare la distanza calcolata
         return d;
       },
       async setLatLon({dispatch, commit}, city ) {
         commit('setCoordinates', city);
-        await dispatch('cercaAppartamenti');
+        await dispatch('fetchFlats');
       }
   },
 });

@@ -11,7 +11,7 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch('fetchFlats');
+    // this.$store.dispatch('fetchFlats');
     document.addEventListener('click', this.handleClickOutside);
     fetch(`http://127.0.0.1:8000/api/services`)
     .then(response => response.json())
@@ -29,8 +29,8 @@ export default {
     ...mapState(['query', 'suggestions', 'selectedSuggestion', 'filtersDropdownVisible'])
   },
   methods: {
-    ...mapMutations(['setQuery', 'toggleFiltersDropdown']),
-    ...mapActions(['fetchSuggestions', 'selectSuggestion', 'cercaAppartamenti']),
+    ...mapMutations(['setQuery', 'toggleFiltersDropdown','setFilterServices']),
+    ...mapActions(['fetchSuggestions', 'selectSuggestion','fetchFlats' ,'cercaAppartamenti']),
     handleInput(event) {
       this.setQuery(event.target.value);
       this.fetchSuggestions();
@@ -48,10 +48,21 @@ export default {
       }
     },
     getFilter(){
-      // prendo tutti elementi con attributo name che inizia con service
-      let arrayCheckedElem = document.querySelectorAll('[name = "services[]"]:checked')
-      console.log(arrayCheckedElem);
-    }
+      // prendo tutti elementi con attributo name=services[] e che sono checked
+      let arrayCheckedElem = document.querySelectorAll('[name = "services[]"]:checked');
+      
+      const services = []
+      
+      arrayCheckedElem.forEach(element => {
+        services.push(parseInt(element.value));
+      });
+
+      // console.log(checkedServices);
+      this.setFilterServices(services);
+    },
+    getImagePath(image) {
+      return new URL(`../../../assets/img/services/${image}`, import.meta.url).href;
+    },
   }
 };
 </script>
@@ -79,21 +90,35 @@ export default {
     </div>
   </div>
   <!-- Bottone per filtri -->
-  <button class="ms_button rounded-4" @click="toggleFilters">Filtri</button>
-  <div v-if="filtersDropdownVisible" class="filters-dropdown">
+  <button class="ms_button rounded-4" @click="toggleFilters()">Filtri</button>
+  <div v-show="filtersDropdownVisible" class="filters-dropdown">
     <!-- Aggiungi qui i tuoi filtri -->
     <div class="filter-item">
-      <ul id="service-list">
-        <li v-for="service in avServices">
+      <div class="container">
+        <div class="row service-list g-1">
+          <div class="col-6 col-md-4 col-lg-3 " v-for="service in avServices" :key="service">
+
+            <input type="checkbox" :id="service.name" class="check-service" name="services[]" :value="service.id"/>
+            <label :for="service.name">
+              <img :src="getImagePath(service.icon)" :alt="'Icona ' + service.name">
+              {{ service.name }}
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- <ul id="service-list">
+        <li v-for="service in avServices" :key="service">
           <label :for="service.name">{{ service.name }}</label>
-          <input type="checkbox" :id="service.name" name="services[]"/>
+          <input type="checkbox" :id="service.name" class="check-service" name="services[]" :value="service.id"/>
         </li>
-      </ul>
+      </ul> -->
+
     </div>
     <!-- Aggiungi altri filtri qui -->
   </div>
 
-  <button class="ms_button rounded-4" @click="getFilter()">Cerca</button>
+  <button class="ms_button rounded-4" @click="toggleFilters(), getFilter(), fetchFlats()" >Cerca</button>
 </div>
 </template>
 
@@ -194,7 +219,7 @@ $bg-main : #F8F2EB;
   position: absolute;
   top: 80%;
   left: 0;
-  background-color: rgb(253, 246, 239);
+  background-color: var(--bg-color);
   /* border: 1px solid #705d3f; */
   border-radius: 8px;
   width: 100%;

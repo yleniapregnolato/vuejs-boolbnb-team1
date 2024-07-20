@@ -83,6 +83,7 @@
     align-items: center;
     gap: 1rem;
     position: relative;
+    z-index: 1;
     width: 100%;
   }
   
