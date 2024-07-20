@@ -59,7 +59,10 @@ export default {
 
       // console.log(checkedServices);
       this.setFilterServices(services);
-    }
+    },
+    getImagePath(image) {
+      return new URL(`../../../assets/img/services/${image}`, import.meta.url).href;
+    },
   }
 };
 </script>
@@ -91,17 +94,31 @@ export default {
   <div v-show="filtersDropdownVisible" class="filters-dropdown">
     <!-- Aggiungi qui i tuoi filtri -->
     <div class="filter-item">
-      <ul id="service-list">
+      <div class="container">
+        <div class="row service-list g-1">
+          <div class="col-6 col-md-4 col-lg-3 " v-for="service in avServices" :key="service">
+
+            <input type="checkbox" :id="service.name" class="check-service" name="services[]" :value="service.id"/>
+            <label :for="service.name">
+              <img :src="getImagePath(service.icon)" :alt="'Icona ' + service.name">
+              {{ service.name }}
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- <ul id="service-list">
         <li v-for="service in avServices" :key="service">
           <label :for="service.name">{{ service.name }}</label>
-          <input type="checkbox" :id="service.name" name="services[]" :value="service.id"/>
+          <input type="checkbox" :id="service.name" class="check-service" name="services[]" :value="service.id"/>
         </li>
-      </ul>
+      </ul> -->
+
     </div>
     <!-- Aggiungi altri filtri qui -->
   </div>
 
-  <button class="ms_button rounded-4" @click="toggleFilters(), getFilter(), fetchFlats()">Cerca</button>
+  <button class="ms_button rounded-4" @click="toggleFilters(), getFilter(), fetchFlats()" >Cerca</button>
 </div>
 </template>
 
@@ -202,7 +219,7 @@ $bg-main : #F8F2EB;
   position: absolute;
   top: 80%;
   left: 0;
-  background-color: rgb(253, 246, 239);
+  background-color: var(--bg-color);
   /* border: 1px solid #705d3f; */
   border-radius: 8px;
   width: 100%;

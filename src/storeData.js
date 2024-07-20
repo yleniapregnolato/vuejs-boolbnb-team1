@@ -164,7 +164,7 @@ const store = createStore({
       },
       async setLatLon({dispatch, commit}, city ) {
         commit('setCoordinates', city);
-        await dispatch('cercaAppartamenti');
+        await dispatch('fetchFlats');
       }
   },
 });

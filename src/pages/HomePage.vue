@@ -87,6 +87,7 @@ export default {
   height: 500px;
   background-color: rgb(0, 0, 0);
   position: relative;
+  z-index: 1;
 
 
   img {

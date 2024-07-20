@@ -1,8 +1,10 @@
 // Bootstrap
+@use './partials/checked';
 @use './header.scss' as *;
 @import '@fortawesome/fontawesome-free/css/all.css';
 @import "bootstrap/scss/bootstrap";
 @import 'vue-cal/dist/vuecal.css';
+
 
 :root {
     --bg-color: #F8F2EB;
