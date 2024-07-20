@@ -15,22 +15,15 @@ export default {
       return new URL(`../../assets/img/${image}`, import.meta.url).href;
     },
     getFilter(){
-      // prendo tutti elementi con attributo name=services[] e che sono checked
-      let arrayCheckedElem = document.querySelectorAll('[name = "services[]"]:checked');
-      
-      const services = []
-      
-      arrayCheckedElem.forEach(element => {
-        services.push(parseInt(element.value));
-      });
 
-      console.log('checkedServices');
-      this.setFilterServices(services);
+      this.setFilterServices([]);
+      this.setRadius(20);
+      this.setMinGuest(1);
     },
   
     
     ...mapActions(['cercaAppartamenti' , 'setLatLon']),
-    ...mapMutations(['setFilterServices']),
+    ...mapMutations(['setFilterServices', 'setRadius', 'setMinGuest']),
   }
   ,
   props: {
