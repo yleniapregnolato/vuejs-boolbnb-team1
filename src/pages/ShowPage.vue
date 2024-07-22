@@ -57,8 +57,8 @@ export default {
                     </div>
 
                     <div class="col-6 p-0 h-100">
-                        <div class="row h-100">
-                            <div class="col-6 h-50 p-0" v-for="(photo, index) in photos" :key="index">
+                        <div class="row h-100 flex-column">
+                            <div class="col-6 h-50 p-0" v-for="(photo, index) in photos.slice(0, 4)" :key="index">
                                 <img class="ms_photos img-fluid card-image" :src="`${flatPhotosUrl}/${photo.image}`" alt="immagini" />
                             </div>
                         </div>
@@ -110,9 +110,9 @@ export default {
                     <ContactHostModal :flatId="flat.id" />
                     <!-- modale contatti -->
                 </div>
-                <div class="col-3 mt-5">
+                <div class="col-4 mt-5">
                     <!-- mappa -->
-                    <section v-if="lat && lon">
+                    <section v-if="lat && lon" class="flex-grow-1">
                         <FlatMap :lat="lat" :lon="lon" />
                     </section>
                     <!-- /mappa -->
