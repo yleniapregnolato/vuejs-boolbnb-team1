@@ -52,27 +52,28 @@ export default {
             <!-- /messaggio di errore -->
             <h1 class="fw-bold mb-2">{{ flat.title }}</h1>
             <!-- galleria immagini -->
-            <section>
-                <div class="row ms_heigth">
-                    <div class="col-6 p-0 h-100">
-                        <img class="card-image img-fluid ms_photos" :src="`${flatCoverImg}/${flat.main_img}`"
-                            alt="immagine di copertina" />
-                    </div>
+            <div class="row ms_heigth">
+                <div class="col-12 col-md-6 p-0 h-100">
+                    <img class="card-image img-fluid ms_photos" :src="`${flatCoverImg}/${flat.main_img}`"
+                        alt="immagine di copertina" />
+                </div>
 
-                    <div v-if="photos.length > 0" class="col-6 p-0 h-100">
-                        <div class="row h-100 flex-column">
-                            <div class="col-6 h-50 p-0" v-for="(photo, index) in photos.slice(0, 4)" :key="index">
+                <div v-if="photos.length > 0" class="col-12 col-md-6 p-0 h-100">
+                    <div class="container">
+                        <div class="row h-100">
+                            <div class="col-6 ms_colHeigth p-0" v-for="(photo, index) in photos.slice(0, 4)" :key="index">
                                 <img class="ms_photos img-fluid card-image" :src="`${flatPhotosUrl}/${photo.image}`"
                                     alt="immagini" />
                             </div>
                         </div>
                     </div>
+
                 </div>
-            </section>
+            </div>
             <!-- /galleria immagini -->
 
             <div class="row">
-                <div class="col-8 mt-5 ms_info">
+                <div class="col-md-8 mt-5 ms_info col-sm-12">
                     <!-- info appartamento -->
                     <section>
 
@@ -102,8 +103,6 @@ export default {
                                 </tr>
                             </tbody>
                         </table>
-
-
                     </section>
                     <!-- /info appartamento -->
                     <!-- modale servizi -->
@@ -114,14 +113,13 @@ export default {
                     <ContactHostModal :flatId="flat.id" />
                     <!-- modale contatti -->
                 </div>
-                <div class="col-4 mt-5">
+                <div class="col-md-4 mt-5">
                     <!-- mappa -->
-                    <section v-if="lat && lon" class="flex-grow-1">
+                    <section v-if="lat && lon">
                         <FlatMap :lat="lat" :lon="lon" />
                     </section>
                     <!-- /mappa -->
                 </div>
-
             </div>
         </div>
     </div>
@@ -145,7 +143,7 @@ export default {
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        margin-top: 60px;
+        margin-top: 20px;
     }
 
     .card-image {
@@ -172,4 +170,8 @@ export default {
         }
     }
 
-}</style>
+    .ms_colHeigth {
+        height: 200px !important;
+    }
+}
+</style>
