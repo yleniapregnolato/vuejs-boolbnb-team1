@@ -42,7 +42,7 @@ export default {
 <template>
     <div class="container show-container mb-5">
         <div class="ms_showcontainer text-black">
-            <h2 class="fw-bold">{{ flat.title }} {{ flat.id }}</h2>
+            <h1 class="fw-bold mb-2">{{ flat.title }}</h1>
             <!-- galleria immagini -->
             <section>
                 <div class="row ms_heigth">
@@ -54,7 +54,7 @@ export default {
                     <div class="col-6 p-0 h-100">
                         <div class="row h-100">
                             <div class="col-6 h-50 p-0" v-for="(photo, index) in photos" :key="index">
-                                <img class="ms_photos img-fluid" :src="`${flatPhotosUrl}/${photo.image}`" alt="immagini" />
+                                <img class="ms_photos img-fluid card-image" :src="`${flatPhotosUrl}/${photo.image}`" alt="immagini" />
                             </div>
                         </div>
                     </div>
@@ -63,15 +63,15 @@ export default {
             <!-- /galleria immagini -->
 
             <div class="row">
-                <div class="col-8">
+                <div class="col-8 mt-5 ms_info">
                     <!-- info appartamento -->
                     <section>
 
-                        <h4>{{ flat.address }}</h4>
+                        <h3>{{ flat.address }}</h3>
                         <!-- descrizione -->
-                        <p class="mt-4">{{ flat.description }}</p>
+                        <p class="mt-2 mb-4">{{ flat.description }}</p>
 
-                        <h5>Informazioni sulla struttura:</h5>
+                        <h4>Informazioni sulla struttura:</h4>
 
                         <table class="table mt-4">
                             <tbody>
@@ -105,7 +105,7 @@ export default {
                     <ContactHostModal :flatId="flat.id" />
                     <!-- modale contatti -->
                 </div>
-                <div class="col-3">
+                <div class="col-3 mt-5">
                     <!-- mappa -->
                     <section>
                         <FlatMap :lat="lat" :lon="lon" />
@@ -138,7 +138,14 @@ export default {
     }
 
     .card-image {
-        width: 500px;
+        width: 100%;
+        border: 5px solid white;
+    }
+
+    .ms_info {
+        background-color: white;
+        padding: 20px;
+        border-radius: 15px;
     }
 
 }</style>
