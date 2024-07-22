@@ -157,10 +157,10 @@ export default {
 
               <!-- Submit -->
               <div class="d-flex gap-2 mt-2">
-                <button type="submit" class="btn btn-primary">Invia</button>
+                <button type="submit" class="btn ms_brown_btn">Invia</button>
                 <button
                   type="button"
-                  class="btn btn-danger"
+                  class="btn ms_brown_btn2"
                   @click="closeModal"
                   aria-label="Close"
                 >
@@ -189,5 +189,17 @@ export default {
     color: black;
     border: 1px solid #f8f2eb;
   }
+}
+
+.ms_brown_btn2 {
+    background-color: white;
+    border: 1px solid #705D3F;
+    &:hover {
+        background-color: #705D3F;
+        color: white;
+        .fa-pencil, .fa-trash {
+            color: white;
+        }
+    }
 }
 </style>
