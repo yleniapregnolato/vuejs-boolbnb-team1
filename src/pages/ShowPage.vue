@@ -33,6 +33,10 @@ export default {
             // console.log(this.lat,this.lon)
             // console.log(this.flat.id);
             console.log(this.flatPhotos);
+        })
+        .catch((error) => {
+            console.error(error);
+            this.errorMessage = 'Impossibile caricare i dettagli dell appartamento.';
         });
         window.scroll(0, 0);
     }
@@ -42,6 +46,11 @@ export default {
 <template>
     <div class="container show-container mb-5">
         <div class="ms_showcontainer text-black">
+             <!-- messaggio di errore -->
+             <div v-if="errorMessage" class="alert alert-danger">
+                {{ errorMessage }}
+            </div>
+            <!-- /messaggio di errore -->
             <h1 class="fw-bold mb-2">{{ flat.title }}</h1>
             <!-- galleria immagini -->
             <section>
