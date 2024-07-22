@@ -14,8 +14,8 @@ export default {
             flat: {},
             flatServices: [],
             photos: [],
-            lat: 0,
-            lon: 0,
+            lat: null,
+            lon: null,
             flatCoverImg: "http://127.0.0.1:8000/storage",
             flatPhotosUrl: "http://127.0.0.1:8000/storage",
         };
@@ -27,12 +27,8 @@ export default {
             this.flat = resp.data;
             this.flatServices = resp.data.services;
             this.photos = resp.data.photos;
-            console.log(resp);
             this.lat = this.flat.latitude;
             this.lon = this.flat.longitude;
-            // console.log(this.lat,this.lon)
-            // console.log(this.flat.id);
-            console.log(this.flatPhotos);
         })
         .catch((error) => {
             console.error(error);
@@ -116,7 +112,7 @@ export default {
                 </div>
                 <div class="col-3 mt-5">
                     <!-- mappa -->
-                    <section>
+                    <section v-if="lat && lon">
                         <FlatMap :lat="lat" :lon="lon" />
                     </section>
                     <!-- /mappa -->

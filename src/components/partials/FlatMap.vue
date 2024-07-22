@@ -15,6 +15,8 @@ export default {
     },
     mounted() {
         this.initializeMap();
+        console.log('Avviata mappa');
+        console.log(this.lat, this.lon);
     },
     computed: {
      ...mapState({
@@ -50,13 +52,13 @@ export default {
 </script>
 
 <template>
-    <div id="map"></div>
+   <div id="map"></div> 
 </template>
 
 <style lang="scss" scoped>
 #map {
-    width: 450px;
-    height: 450px;
+    width: 100%;
+    aspect-ratio: 1/1;
     border-radius: 20px;
     padding: 20px;
     border: 1px solid black;
