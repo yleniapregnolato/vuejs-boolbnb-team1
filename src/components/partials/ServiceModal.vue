@@ -18,7 +18,12 @@ export default {
         serviceModal() {
             this.showServices = !this.showServices;
             console.log(this.services);
-        }
+        },
+        closeModal(event) {
+            if (event.target.classList.contains('ms_service-modal')) {
+                this.showServices = false;
+            }
+        },
     }
 }
 </script>
@@ -27,7 +32,7 @@ export default {
     <!-- Modale servizi -->
     <button @click="serviceModal" class="btn ms_brown_btn mt-2 mb-2">Mostra tutti i servizi</button>
 
-    <div class="modal ms_service-modal" :class="showServices ? 'd-block' : ''" tabindex="-1">
+    <div class="modal ms_service-modal" :class="showServices ? 'd-block' : ''" tabindex="-1" aria-hidden="true" @click="closeModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -53,8 +58,7 @@ export default {
 
 <style lang="scss" scoped>
 .ms_service-modal {
-    top: 15%;
-    bottom: 10%;
+    background: rgba(0, 0, 0, 0.5)
 }
 
 .ms_brown_btn {
