@@ -30,10 +30,10 @@ export default {
             this.lat = this.flat.latitude;
             this.lon = this.flat.longitude;
         })
-        .catch((error) => {
-            console.error(error);
-            this.errorMessage = 'Impossibile caricare i dettagli dell appartamento.';
-        });
+            .catch((error) => {
+                console.error(error);
+                this.errorMessage = 'Impossibile caricare i dettagli dell appartamento.';
+            });
         window.scroll(0, 0);
     }
 }
@@ -41,9 +41,12 @@ export default {
 
 <template>
     <div class="container show-container mb-5">
+        <!-- tasto indietro -->
+        <router-link class="btn ms_brown_btn" :to="{ name: 'home' }"><i class="fa-solid fa-arrow-left"></i> Torna
+            indietro</router-link>
         <div class="ms_showcontainer text-black">
-             <!-- messaggio di errore -->
-             <div v-if="errorMessage" class="alert alert-danger">
+            <!-- messaggio di errore -->
+            <div v-if="errorMessage" class="alert alert-danger">
                 {{ errorMessage }}
             </div>
             <!-- /messaggio di errore -->
@@ -56,10 +59,11 @@ export default {
                             alt="immagine di copertina" />
                     </div>
 
-                    <div class="col-6 p-0 h-100">
+                    <div v-if="photos.length > 0" class="col-6 p-0 h-100">
                         <div class="row h-100 flex-column">
                             <div class="col-6 h-50 p-0" v-for="(photo, index) in photos.slice(0, 4)" :key="index">
-                                <img class="ms_photos img-fluid card-image" :src="`${flatPhotosUrl}/${photo.image}`" alt="immagini" />
+                                <img class="ms_photos img-fluid card-image" :src="`${flatPhotosUrl}/${photo.image}`"
+                                    alt="immagini" />
                             </div>
                         </div>
                     </div>
@@ -131,10 +135,12 @@ export default {
     .ms_heigth {
         height: 400px;
     }
+
     .ms_photos {
         object-fit: cover;
         height: 100%;
     }
+
     .ms_showcontainer {
         display: flex;
         flex-direction: column;
@@ -146,10 +152,24 @@ export default {
         width: 100%;
         border: 5px solid white;
     }
+
     .ms_info {
         background-color: white;
         padding: 20px;
         border-radius: 15px;
+    }
+
+    .ms_brown_btn {
+        background-color: #705D3F;
+        border: 1px solid #705D3F;
+        color: white;
+
+        &:hover {
+            background-color: #F8F2EB;
+            transition: all 0.7s;
+            color: black;
+            border: 1px solid #F8F2EB;
+        }
     }
 
 }</style>
