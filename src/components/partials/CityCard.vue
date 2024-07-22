@@ -18,12 +18,13 @@ export default {
 
       this.setFilterServices([]);
       this.setRadius(20);
-      this.setMinGuest(1);
+      this.setBeds(1);
+      this.setRooms(2);
     },
   
     
     ...mapActions(['cercaAppartamenti' , 'setLatLon']),
-    ...mapMutations(['setFilterServices', 'setRadius', 'setMinGuest']),
+    ...mapMutations(['setFilterServices', 'setRadius', 'setBeds', 'setRooms']),
   }
   ,
   props: {

@@ -37,7 +37,7 @@ export default {
   <div class="ms_container">
     <div class="bannerCont">
       <img @click="closeAll"
-        src="https://cdn.discordapp.com/attachments/1260526842679660585/1263791478610591834/1-roma-dall-alto-copertina_wide.png?ex=669b8508&is=669a3388&hm=063941407d6e321e2c0e4175f7dc3f486c76ff38d4fb5f5275b021f0bfc384a9&"
+        src="../assets/img/roma.jpg"
         alt="">
       <div class="ms_externalContent">
         <p class="text-center mx-2" @click="closeAll">Prenota case al mare, ville e appartamenti in tutta Italia
