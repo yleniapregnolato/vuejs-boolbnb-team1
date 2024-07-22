@@ -9,7 +9,8 @@ export default {
       avServices: [],
       checcate: [],
       radius: 20,
-      minGuest: 1,
+      beds: 1,
+      rooms: 2,
     };
   },
   mounted() {
@@ -31,7 +32,7 @@ export default {
     ...mapState(['query', 'suggestions', 'selectedSuggestion', 'filtersDropdownVisible'])
   },
   methods: {
-    ...mapMutations(['setQuery', 'toggleFiltersDropdown', 'setFilterServices', 'setRadius', 'setMinGuest']),
+    ...mapMutations(['setQuery', 'toggleFiltersDropdown', 'setFilterServices', 'setRadius', 'setBeds', 'setRooms']),
     ...mapActions(['fetchSuggestions', 'selectSuggestion', 'fetchFlats', 'cercaAppartamenti']),
     handleInput(event) {
       this.setQuery(event.target.value);
@@ -62,7 +63,11 @@ export default {
       // console.log(checkedServices);
       this.setFilterServices(services);
       this.setRadius(this.radius);
-      this.setMinGuest(this.minGuest);
+      this.setBeds(this.beds);
+      this.setRooms(this.rooms);
+
+      // window.history.pushState(null,null, `radius=${this.radius}&services=${services}`);
+
     },
     getImagePath(image) {
       return new URL(`../../../assets/img/services/${image}`, import.meta.url).href;
@@ -93,25 +98,47 @@ export default {
             <div class="col-12">
               <div class="container">
                 <div class="row g-4 justify-content-between">
-                  <div class="col-12 range-guests d-md-flex">
-                    <div class="col-12 col-md-6 p-2 text-center">
-                      <label class="mb-2" for="rangeValore">Raggio di ricerca:</label> <output for="rangeValore">{{radius}} Km</output>
-                      <input type="range" id="rangeValore" min="1" max="100" v-model="radius">
+                  <div class="col-12 range-guests d-flex">
 
-                    </div>
-
-                    <div class="col-12 col-md-6 p-2 text-center">
-
-                      <span class="d-inline-block mb-2">Numero di ospiti</span>
-                      <div class="guest">
-                        <i class="fa-solid fa-circle-minus" @click="minGuest > 1 ? minGuest-- :''"></i>
-                        <span class="mx-4">
-                          {{ minGuest }}
-                        </span>
-                        <i class="fa-solid fa-circle-plus" @click="minGuest < 99 ? minGuest++ : ''"></i>
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-12 col-lg-4 p-2 text-center">
+                          <label class="mb-2" for="rangeValore">Raggio di ricerca:</label> <output
+                            for="rangeValore">{{ radius }} Km</output>
+                          <input type="range" id="rangeValore" min="1" max="100" v-model="radius">
+    
+                        </div>
+    
+                        <div class="col-6 col-lg-4 p-2 text-center">
+    
+                          <span class="d-inline-block mb-2">Numero letti</span>
+                          <div class="num-filter">
+                            <i class="fa-solid fa-circle-minus" @click="beds > 1 ? beds-- : ''"></i>
+                            <span class="mx-4">
+                              {{ beds }}
+                            </span>
+                            <i class="fa-solid fa-circle-plus" @click="beds < 99 ? beds++ : ''"></i>
+                          </div>
+    
+                        </div>
+    
+                        <div class="col-6 col-lg-4 p-2 text-center">
+    
+                          <span class="d-inline-block mb-2">Numero stanze</span>
+                          <div class="num-filter">
+                            <i class="fa-solid fa-circle-minus" @click="rooms > 1 ? rooms-- : ''"></i>
+                            <span class="mx-4">
+                              {{ rooms }}
+                            </span>
+                            <i class="fa-solid fa-circle-plus" @click="rooms < 99 ? rooms++ : ''"></i>
+                          </div>
+    
+                        </div>
                       </div>
-
                     </div>
+
+
+
                   </div>
                 </div>
               </div>
@@ -299,15 +326,15 @@ $bg-main : #F8F2EB;
   cursor: pointer;
 }
 
-.guest {
+.num-filter {
   display: flex;
   align-items: center;
   justify-content: center;
   user-select: none;
+
   i {
     font-size: 30px;
     cursor: pointer;
   }
 }
-
 </style>
