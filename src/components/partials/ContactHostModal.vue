@@ -35,7 +35,7 @@ export default {
       if (this.dateRange.start && this.dateRange.end) {
         const startDate = new Date(this.dateRange.start).toLocaleDateString();
         const endDate = new Date(this.dateRange.end).toLocaleDateString();
-        this.formData.text += `\n\nRichiesta prenotazione dal ${startDate} al ${endDate}`;
+        this.formData.text += `\n\n <br>Richiesta prenotazione dal ${startDate} al ${endDate}`;
       }
 
       axios
