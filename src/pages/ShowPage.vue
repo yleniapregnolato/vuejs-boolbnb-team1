@@ -67,7 +67,7 @@ export default {
                     <!-- info appartamento -->
                     <section>
 
-                        <h3>{{ flat.address }}</h3>
+                        <h3 class="fw-bold">{{ flat.address }}</h3>
                         <!-- descrizione -->
                         <p class="mt-2 mb-4">{{ flat.description }}</p>
 
@@ -141,7 +141,6 @@ export default {
         width: 100%;
         border: 5px solid white;
     }
-
     .ms_info {
         background-color: white;
         padding: 20px;
