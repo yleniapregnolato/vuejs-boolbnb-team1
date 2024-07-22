@@ -95,15 +95,18 @@ const store = createStore({
       state.radius = newRadius;
       state.filter.radius = newRadius;
     },
-    setMinGuest(state, guest) {
-      state.filter.minGuest = guest;
+    setBeds(state, beds) {
+      state.filter.beds = beds;
     },
-
+    setRooms(state, rooms) {
+      state.filter.rooms = rooms;
+    },
   },
   actions: {
     fetchFlats({commit, state, dispatch}){
       
       const data = state.filter;
+      
       console.log(data);
         axios.post(state.fetchMyAPIPath + 'flats', data).then(r=> {
             // Controllo che abbia preso correttamente i risultati dalla chiamata API
