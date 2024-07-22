@@ -41,8 +41,8 @@ export default {
 
 <template>
     <div class="container show-container mb-5">
-        <div class="ms_showcontainer">
-            <h2>{{ flat.title }} {{ flat.id }}</h2>
+        <div class="ms_showcontainer text-black">
+            <h2 class="fw-bold">{{ flat.title }} {{ flat.id }}</h2>
             <!-- galleria immagini -->
             <section>
                 <div class="row ms_heigth">
