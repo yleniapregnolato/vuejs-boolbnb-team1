@@ -54,16 +54,16 @@ export default {
 
             <div class="row">
                 <div class="col-md-6 col-12">
-                    <img class="card-image img-fluid ms_photos" :src="`${flatCoverImg}/${flat.main_img}`"
+                    <img class="card-image img-fluid ms_photos h-100" :src="`${flatCoverImg}/${flat.main_img}`"
                         alt="immagine di copertina" />
                 </div>
                 <!-- carosello -->
-                <div class="col-md-6 col-12">
+                <div class="col-md-6 col-12 mt-2 mt-md-0">
                     <section>
                         <div id="carouselExampleFade" class="carousel slide carousel-fade">
                             <div class="carousel-inner">
                                 <div class="carousel-item active" v-for="(photo, index) in photos.slice(0, 4)" :key="index">
-                                    <img class="ms_photo img-fluid card-image d-block"
+                                    <img class="ms_photo img-fluid card-image d-block h-100"
                                         :src="`${flatPhotosUrl}/${photo.image}`" alt="immagini" />
                                 </div>
                             </div>
@@ -146,7 +146,6 @@ export default {
 
     .ms_photos {
         object-fit: cover;
-        max-height: 100%;
     }
 
     .ms_showcontainer {
