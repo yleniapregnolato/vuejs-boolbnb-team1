@@ -51,27 +51,37 @@ export default {
             </div>
             <!-- /messaggio di errore -->
             <h1 class="fw-bold mb-2">{{ flat.title }}</h1>
-            <!-- galleria immagini -->
-            <div class="row ms_heigth">
-                <div class="col-12 col-md-6 p-0 h-100">
+
+            <div class="row">
+                <div class="col-md-6 col-12">
                     <img class="card-image img-fluid ms_photos" :src="`${flatCoverImg}/${flat.main_img}`"
                         alt="immagine di copertina" />
                 </div>
-
-                <div v-if="photos.length > 0" class="col-12 col-md-6 p-0 h-100">
-                    <div class="container">
-                        <div class="row h-100">
-                            <div class="col-6 ms_colHeigth p-0" v-for="(photo, index) in photos.slice(0, 4)" :key="index">
-                                <img class="ms_photos img-fluid card-image" :src="`${flatPhotosUrl}/${photo.image}`"
-                                    alt="immagini" />
+                <!-- carosello -->
+                <div class="col-md-6 col-12">
+                    <section>
+                        <div id="carouselExampleFade" class="carousel slide carousel-fade">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active" v-for="(photo, index) in photos.slice(0, 4)" :key="index">
+                                    <img class="ms_photo img-fluid card-image d-block"
+                                        :src="`${flatPhotosUrl}/${photo.image}`" alt="immagini" />
+                                </div>
                             </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
-                    </div>
-
+                    </section>
                 </div>
+                <!-- /carosello -->
             </div>
-            <!-- /galleria immagini -->
-
             <div class="row">
                 <div class="col-md-8 mt-5 ms_info col-sm-12">
                     <!-- info appartamento -->
@@ -136,7 +146,7 @@ export default {
 
     .ms_photos {
         object-fit: cover;
-        height: 100%;
+        max-height: 100%;
     }
 
     .ms_showcontainer {
@@ -148,7 +158,6 @@ export default {
 
     .card-image {
         width: 100%;
-        border: 5px solid white;
     }
 
     .ms_info {
@@ -168,10 +177,6 @@ export default {
             color: black;
             border: 1px solid #F8F2EB;
         }
-    }
-
-    .ms_colHeigth {
-        height: 200px !important;
     }
 }
 </style>
