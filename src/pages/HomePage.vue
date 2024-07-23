@@ -118,10 +118,11 @@ export default {
         </div>
       </div>
     </div>
-
+    
     <!-- flats researched -->
     <div class="container my-5" v-if="searchActive">
-      <div class="row g-4" v-if="foundedFlats.length > 0">
+      <div class="row g-4 md_search p-3" v-if="foundedFlats.length > 0">
+        <p class="fs-2 text-black mb-2">Risultati della ricerca:</p>
         <div class="col-12 col-md-6 col-lg-4 col-xl-3" v-for="flat in foundedFlats" :key="flat">
           <Flat_card :flat="flat" />
         </div>
@@ -149,6 +150,12 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+
+.md_search {
+    background-color: rgba(180, 184, 151, 0.3);
+    border-radius: 15px;
+}
+
 .ms_container {
   width: 100%;
 }
