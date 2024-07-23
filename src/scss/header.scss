@@ -2,9 +2,18 @@
 
 .ms_headernav {
     z-index: 999;
-    background-color: var(--primary-color);
     width: 100%;
+    transition: all 0.5s;
+}
 
+.ms_bg-primary {
+    background-color: var(--primary-color);
+    
+}
+
+.ms_bg-transparent {
+    background-color: transparent;
+    
 }
 
 .font {
