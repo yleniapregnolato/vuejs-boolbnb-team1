@@ -13,7 +13,7 @@ export default {
 
   <nav class="navbar navbar-expand-lg ms_headernav sticky-top">
     <div class="container-fluid">
-      <router-link class="navbar-brand font" to="/">BoolBnB</router-link>
+      <router-link class="navbar-brand font nav-link" to="/">BoolBnB</router-link>
       <button class="navbar-toggler font border" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
         aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fa-solid fa-bars"></i>
@@ -49,6 +49,10 @@ export default {
 
 .nav-link {
   position: relative;
+  
+  &:focus {
+    color: unset;
+  }
 
   &:hover {
     color: var(--bg-color);
