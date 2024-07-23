@@ -14,6 +14,25 @@ export default {
       storejs,
     }
   },
+
+  mounted() {
+      const listImgElem = document.querySelectorAll('.hero-img');
+      console.log(listImgElem);
+      if(listImgElem.length > 1){
+        let i = 0;
+        listImgElem[i].classList.remove('ms_hidden');
+        setInterval(()=> {
+          listImgElem[i].classList.add('ms_hidden');
+          if(i<listImgElem.length-1) {
+            i++;
+          } else {
+            i = 0;
+          }
+
+          listImgElem[i].classList.remove('ms_hidden');
+        },5000)
+      }
+    },
   name: "HomePage",
   components: { SearchComponent, CityCard, Footer, Flat_card, FlatsNotFound },
 
@@ -29,6 +48,9 @@ export default {
   },
   methods: {
     ...mapMutations(['closeAll']),
+    getImagePath(image) {
+      return new URL(`../assets/img/${image}`, import.meta.url).href;
+    },
   }
 };
 </script>
@@ -36,9 +58,10 @@ export default {
 <template>
   <div class="ms_container">
     <div class="bannerCont">
-      <img @click="closeAll"
+      <!-- <img @click="closeAll"
         src="../assets/img/roma.jpg"
-        alt="">
+        alt=""> -->
+        <img :src="getImagePath(img.link)" class="hero-img ms_hidden" alt="" v-for="img in storejs.city_img" :key="img">
       <div class="ms_externalContent">
         <p class="text-center mx-2" @click="closeAll">Prenota case al mare, ville e appartamenti in tutta Italia
         </p>
@@ -89,12 +112,27 @@ export default {
   position: relative;
   z-index: 1;
 
+  .ms_hidden {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    
+  }
+
+  .ms_active {
+    opacity: 0.6;
+    height: 100%;
+  }
 
   img {
     width: 100%;
     height: 100%;
     opacity: .6;
     object-fit: cover;
+    transition: all 1s;
   }
 
   .ms_externalContent {
