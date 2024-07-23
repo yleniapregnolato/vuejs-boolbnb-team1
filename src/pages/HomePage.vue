@@ -6,32 +6,27 @@ import Footer from '../components/Footer.vue';
 import Flat_card from '../components/partials/Flat_card.vue';
 import FlatsNotFound from '../components/partials/FlatsNotFound.vue';
 import { storejs } from '../store';
+import { useRoute } from 'vue-router';
 
 
 export default {
+  setup() {
+    const route = useRoute();
+    return {
+      route
+    };
+  },
   data() {
     return {
       storejs,
+      
     }
   },
 
   mounted() {
-      const listImgElem = document.querySelectorAll('.hero-img');
-      console.log(listImgElem);
-      if(listImgElem.length > 1){
-        let i = 0;
-        listImgElem[i].classList.remove('ms_hidden');
-        setInterval(()=> {
-          listImgElem[i].classList.add('ms_hidden');
-          if(i<listImgElem.length-1) {
-            i++;
-          } else {
-            i = 0;
-          }
+    this.alternateHeroImg();
+    // this.changeHeader();
 
-          listImgElem[i].classList.remove('ms_hidden');
-        },5000)
-      }
     },
   name: "HomePage",
   components: { SearchComponent, CityCard, Footer, Flat_card, FlatsNotFound },
@@ -51,6 +46,59 @@ export default {
     getImagePath(image) {
       return new URL(`../assets/img/${image}`, import.meta.url).href;
     },
+
+    alternateHeroImg() {
+
+      const listImgElem = document.querySelectorAll('.hero-img');
+      
+      if(listImgElem.length > 1){
+        let i = 0;
+        listImgElem[i].classList.remove('ms_hidden');
+        setInterval(()=> {
+          listImgElem[i].classList.add('ms_hidden');
+          if(i<listImgElem.length-1) {
+            i++;
+          } else {
+            i = 0;
+          }
+
+          listImgElem[i].classList.remove('ms_hidden');
+        },5000)
+      }
+    },
+
+    // changeHeader() {
+    //   const headerElem = document.querySelector('.ms_headernav');
+
+    //   if (this.route.name == 'home') {
+    //     console.log('home');
+        
+    //     headerElem.classList.add('ms_bg-transparent');
+  
+    //     const bannerContElem = document.querySelector('.bannerCont');
+  
+    //     const x = bannerContElem.offsetHeight - headerElem.offsetHeight;
+    //     window.addEventListener('scroll', ()=> {
+  
+    //       if(window.scrollY > x) {
+    //         console.log('superato');
+    //         headerElem.classList.add('ms_bg-primary');
+    //         headerElem.classList.remove('ms_bg-transparent');
+  
+    //       } else {
+    //         headerElem.classList.remove('ms_bg-primary');
+    //         headerElem.classList.add('ms_bg-transparent');
+    //       }
+  
+    //     })
+    //   } else {
+    //     headerElem.classList.remove('ms_bg-transparent', 'fixed-top');
+    //     headerElem.classList.add('ms_bg-primary', 'sticky-top');
+    //   }
+
+    // },
+
+
   }
 };
 </script>
