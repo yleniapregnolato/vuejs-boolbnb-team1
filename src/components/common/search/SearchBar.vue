@@ -32,7 +32,7 @@ export default {
     ...mapState(['query', 'suggestions', 'selectedSuggestion', 'filtersDropdownVisible'])
   },
   methods: {
-    ...mapMutations(['setQuery', 'toggleFiltersDropdown', 'setFilterServices', 'setRadius', 'setBeds', 'setRooms']),
+    ...mapMutations(['setQuery', 'toggleFiltersDropdown','closeFiltersDropdown' ,'setFilterServices', 'setRadius', 'setBeds', 'setRooms']),
     ...mapActions(['fetchSuggestions', 'selectSuggestion', 'fetchFlats', 'cercaAppartamenti']),
     handleInput(event) {
       this.setQuery(event.target.value);
@@ -40,18 +40,44 @@ export default {
       this.clicked = true;
     },
     toggleFilters() {
-      this.toggleFiltersDropdown();
+      this.toggleFiltersDropdown(!this.filtersDropdownVisible);
     },
     toggleClick() {
       this.clicked = false;
     },
     handleClickOutside(event) {
-      if (
-        !this.$el.contains(event.target) && 
-        (!this.$refs.filtersDropdown || !this.$refs.filtersDropdown.contains(event.target))
-      ) {
-        this.clicked = false;
-        this.$store.commit('toggleFiltersDropdown', false); // Close filters dropdown
+        const searchBar = this.$refs.searchBar;
+        const filtersDropdown = this.$refs.filtersDropdown;
+        const filtersButton = this.$refs.filtersButton;
+        const searchButton = this.$refs.searchButton;
+
+        console.log('Clicked outside:', !searchBar.contains(event.target));
+        console.log('Dropdown:', !filtersDropdown.contains(event.target));
+        console.log('Filters button:', !filtersButton.contains(event.target));
+        console.log('Search button:', !searchButton.contains(event.target));
+
+        if (
+          (filtersDropdown && !filtersDropdown.contains(event.target)) &&
+          (searchBar && !searchBar.contains(event.target)) &&
+          (filtersButton && !filtersButton.contains(event.target)) &&
+          (searchButton && !searchButton.contains(event.target))
+        ) {
+          if (this.filtersDropdownVisible) {
+            this.$store.commit('closeFiltersDropdown');
+          }
+        }
+
+        this.handleSearchBarClick(event);
+    },
+    handleSearchBarClick(event) {
+      const searchBar = this.$refs.searchBar;
+      const filtersDropdown = this.$refs.filtersDropdown;
+
+      if (searchBar && searchBar.contains(event.target)) {
+        // Chiudi il dropdown dei filtri quando clicchi sulla search bar
+        if (this.filtersDropdownVisible) {
+          this.$store.commit('closeFiltersDropdown');
+        }
       }
     },
     getFilter() {
@@ -71,7 +97,8 @@ export default {
       this.setRooms(this.rooms);
 
       // window.history.pushState(null,null, `radius=${this.radius}&services=${services}`);
-
+      // Chiudo al click sul cerca
+      this.$store.commit('closeFiltersDropdown');
     },
     getImagePath(image) {
       return new URL(`../../../assets/img/services/${image}`, import.meta.url).href;
@@ -82,7 +109,7 @@ export default {
 
 <template>
   <div class="container-fluid d-flex align-items-center">
-    <div class="ms_searchbar rounded-4 my-5 pe-4">
+    <div class="ms_searchbar rounded-4 my-5 pe-4" ref="searchBar">
       <input type="text" id="ms_input" placeholder="Cerca qualcosa.." v-model="selected" @input="handleInput"
         class="w-100" />
       <div id="dropdown" v-if="suggestions.length" class="dropdown-menu" :class="clicked ? 'show' : ''">
@@ -93,7 +120,7 @@ export default {
       </div>
     </div>
     <!-- Bottone per filtri -->
-    <button class="ms_button rounded-4" @click="toggleFilters()">Filtri</button>
+    <button class="ms_button rounded-4" @click="toggleFilters()" ref="filtersButton">Filtri</button>
     <div v-show="filtersDropdownVisible" class="filters-dropdown" ref="filtersDropdown">
       <!-- Aggiungi qui i tuoi filtri -->
       <div class="filter-item">
@@ -163,7 +190,7 @@ export default {
       <!-- Aggiungi altri filtri qui -->
     </div>
 
-    <button class="ms_button rounded-4" @click="getFilter(), fetchFlats()">Cerca</button>
+    <button class="ms_button rounded-4" @click="getFilter(), fetchFlats()" ref="searchButton">Cerca</button>
   </div>
 </template>
 

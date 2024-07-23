@@ -31,9 +31,12 @@ const store = createStore({
     };
   },
   mutations: {
-    toggleFiltersDropdown(state) {
-    state.filtersDropdownVisible = !state.filtersDropdownVisible;
-  },
+    toggleFiltersDropdown(state, value) {
+      state.filtersDropdownVisible = value;
+    },
+    closeFiltersDropdown(state) {
+      state.filtersDropdownVisible = false;
+    },
     toggleDestination(state) {
       state.isDestinationActive = !state.isDestinationActive;
       if (state.isDestinationActive) {
