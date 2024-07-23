@@ -46,8 +46,12 @@ export default {
       this.clicked = false;
     },
     handleClickOutside(event) {
-      if (!this.$el.contains(event.target)) {
+      if (
+        !this.$el.contains(event.target) && 
+        (!this.$refs.filtersDropdown || !this.$refs.filtersDropdown.contains(event.target))
+      ) {
         this.clicked = false;
+        this.$store.commit('toggleFiltersDropdown', false); // Close filters dropdown
       }
     },
     getFilter() {
@@ -90,7 +94,7 @@ export default {
     </div>
     <!-- Bottone per filtri -->
     <button class="ms_button rounded-4" @click="toggleFilters()">Filtri</button>
-    <div v-show="filtersDropdownVisible" class="filters-dropdown">
+    <div v-show="filtersDropdownVisible" class="filters-dropdown" ref="filtersDropdown">
       <!-- Aggiungi qui i tuoi filtri -->
       <div class="filter-item">
         <div class="container">
@@ -159,7 +163,7 @@ export default {
       <!-- Aggiungi altri filtri qui -->
     </div>
 
-    <button class="ms_button rounded-4" @click="toggleFilters(), getFilter(), fetchFlats()">Cerca</button>
+    <button class="ms_button rounded-4" @click="getFilter(), fetchFlats()">Cerca</button>
   </div>
 </template>
 
