@@ -108,7 +108,7 @@ export default {
 </script>
 
 <template>
-  <div class="container-fluid d-flex align-items-center">
+  <div class="container-fluid d-flex align-items-center" id="ms_cont-s-bar">
     <div class="ms_searchbar rounded-4 my-5 pe-4" ref="searchBar">
       <input type="text" id="ms_input" placeholder="Cerca qualcosa.." v-model="selected" @input="handleInput"
         class="w-100" />
@@ -140,7 +140,7 @@ export default {
     
                         </div>
     
-                        <div class="col-6 col-lg-4 p-2 text-center">
+                        <div class="col-md-6 col-sm-12 col-lg-4 p-2 text-center">
     
                           <span class="d-inline-block mb-2">Numero letti</span>
                           <div class="num-filter">
@@ -153,7 +153,7 @@ export default {
     
                         </div>
     
-                        <div class="col-6 col-lg-4 p-2 text-center">
+                        <div class="col-md-6 col-sm-12 col-lg-4 p-2 text-center">
     
                           <span class="d-inline-block mb-2">Numero stanze</span>
                           <div class="num-filter">
@@ -205,6 +205,7 @@ $bg-main : #F8F2EB;
   /* border: 1px solid #705d3f; */
   transition: all 0.7s;
   width: 75%;
+  max-width: 1000px;
   /* border-radius: 24px; */
 }
 
@@ -368,4 +369,30 @@ $bg-main : #F8F2EB;
     cursor: pointer;
   }
 }
+
+@media (max-width :767px) {
+  #ms_cont-s-bar{
+    flex-direction: column;
+    gap: 12px;
+    .ms_searchbar{
+      width: 100%;
+        #ms_input{
+          font-size: 1.2rem;
+        }
+    }
+  }
+
+  }
+  @media (max-width: 450px) {
+    #ms_cont-s-bar{
+    flex-direction: column;
+    gap: 12px;
+    .ms_searchbar{
+      width: 100%;
+        #ms_input{
+          font-size: 1rem;
+        }
+    }
+  }
+  }
 </style>
