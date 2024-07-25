@@ -16,7 +16,9 @@ export default {
 
   <nav class="navbar navbar-expand-lg ms_headernav ms_bg-primary sticky-top">
     <div class="container-fluid">
-      <router-link class="navbar-brand font nav-link" to="/">BoolBnB</router-link>
+      <router-link class="navbar-brand font nav-link" to="/">
+        <img src="../assets/img/logo-white.png" alt="">
+      </router-link>
       <button class="navbar-toggler font border" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
         aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fa-solid fa-bars"></i>

@@ -7,9 +7,9 @@ export default {};
     <footer class="container">
       <!-- Logo -->
       <div class="mb-3">
-        <a href="#">
-          <h2 class="ms_logo">BoolBnB/logo</h2>
-        </a>
+        <router-link class="navbar-brand font nav-link" to="/">
+          <img src="../assets/img/logo-white.png" alt="">
+        </router-link>
       </div>
       <!-- /Logo -->
 
