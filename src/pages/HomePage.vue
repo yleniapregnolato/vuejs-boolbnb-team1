@@ -80,7 +80,7 @@ export default {
       <div class="ms_externalContent">
         <p class="text-center mx-2" @click="closeAll">Prenota case al mare, ville e appartamenti in tutta Italia
         </p>
-        <div class="container">
+        <div class="container-fluid">
           <SearchComponent />
         </div>
       </div>
@@ -161,7 +161,7 @@ export default {
   }
 
   .ms_externalContent {
-    width: 60%;
+    width: 80%;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -172,7 +172,25 @@ export default {
       letter-spacing: 2px;
       font-size: 3.2rem;
       color: white;
+      transition: all 0.7s;
     }
   }
 }
+
+@media (max-width :767px) {
+  .bannerCont .ms_externalContent p{
+        font-weight: 600;
+        letter-spacing: 1px;
+        font-size: 2rem;
+        transition: all 0.7s;
+      }
+  }
+  @media (max-width: 456px) {
+  .bannerCont .ms_externalContent p{
+        font-weight: 600;
+        letter-spacing: 1px;
+        font-size: 1.6rem;
+        transition: all 0.7s;
+      }
+  }
 </style>
