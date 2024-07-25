@@ -77,6 +77,7 @@ const store = createStore({
     },
     setAllFlats(state, data){
         state.allFlats = data;
+        console.log('Object array',state.allFlats);
     },
     setFoundedFlats(state, flat){
         state.foundedFlats.push(flat);
@@ -113,8 +114,18 @@ const store = createStore({
       console.log(data);
         axios.post(state.fetchMyAPIPath + 'flats', data).then(r=> {
             // Controllo che abbia preso correttamente i risultati dalla chiamata API
-            console.log(r.data);
-            commit('setAllFlats', r.data);
+            console.log('Risposta API:',r.data);
+            const arryFlats = Object.values(r.data);
+            const sortedFlats = arryFlats.sort((a, b) => {
+              if (a.sponsored && !b.sponsored) {
+                  return -1;
+              } else if (!a.sponsored && b.sponsored) {
+                  return 1;
+              } else {
+                  return 0;
+              }
+          });
+            commit('setAllFlats', sortedFlats );
             
             dispatch('cercaAppartamenti');
         });
@@ -149,6 +160,7 @@ const store = createStore({
         commit("setSearchActive");
         commit("closeAll");
         for (const flat of state.allFlats) {
+          console.log('entrato nel for');
           const d = await dispatch('getDistanceFromLatLonInKm', { lat2: flat.latitude, lon2: flat.longitude });
           if (d < state.radius) {
             commit('setFoundedFlats', flat);
