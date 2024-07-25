@@ -38,8 +38,8 @@ export default {
             map.addControl(new tt.NavigationControl());
 
             const customIcon = document.createElement('div');
-            customIcon.style.backgroundImage = "url('https://cdn-icons-png.freepik.com/256/12148/12148859.png?ga=GA1.1.390998275.1721068661&semt=ais_hybrid')";
-            customIcon.style.backgroundSize = 'contain';
+            customIcon.classList.add('ms_bg-marker');
+            customIcon.style.backgroundSize = 'cover';
             customIcon.style.width = '32px';
             customIcon.style.height = '32px';
 
@@ -58,10 +58,8 @@ export default {
 <style lang="scss" scoped>
 #map {
     width: 100%;
-    aspect-ratio: 1/1;
     border-radius: 20px;
     padding: 20px;
-    border: 1px solid black;
-    height: 500px;
+    height: 100%;
 }
 </style>
