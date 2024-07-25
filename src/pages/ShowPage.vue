@@ -83,7 +83,7 @@ export default {
                 <!-- /carosello -->
             </div>
             <div class="row">
-                <div class="col-md-8 mt-5 ms_info col-sm-12">
+                <div class="col-lg-7 mt-5 ms_info col-sm-12">
                     <!-- info appartamento -->
                     <section>
 
@@ -123,9 +123,9 @@ export default {
                     <ContactHostModal :flatId="flat.id" />
                     <!-- modale contatti -->
                 </div>
-                <div class="col-md-4 mt-5">
+                <div class="col-lg-5 mt-5 col-map">
                     <!-- mappa -->
-                    <section v-if="lat && lon">
+                    <section v-if="lat && lon" class="h-100 section-map">
                         <FlatMap :lat="lat" :lon="lon" />
                     </section>
                     <!-- /mappa -->
@@ -182,5 +182,15 @@ export default {
         max-height: 400px; 
         object-fit: cover;
     }
+}
+
+.section-map {
+    min-height: 200px;
+}
+
+@media (max-width: 991px) {
+    .col-map {
+    padding: 0;
+}
 }
 </style>
