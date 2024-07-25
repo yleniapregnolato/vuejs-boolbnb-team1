@@ -58,7 +58,7 @@ export default {
                         alt="immagine di copertina" />
                 </div>
                 <!-- carosello -->
-                <div class="col-md-6 col-12 mt-2 mt-md-0">
+                <div class="col-md-6 col-12 mt-2 mt-md-0" v-if="photos.length">
                     <section>
                         <div id="carouselExampleFade" class="carousel slide carousel-fade">
                             <div class="carousel-inner">
