@@ -67,37 +67,6 @@ export default {
       }
     },
 
-    // changeHeader() {
-    //   const headerElem = document.querySelector('.ms_headernav');
-
-    //   if (this.route.name == 'home') {
-    //     console.log('home');
-        
-    //     headerElem.classList.add('ms_bg-transparent');
-  
-    //     const bannerContElem = document.querySelector('.bannerCont');
-  
-    //     const x = bannerContElem.offsetHeight - headerElem.offsetHeight;
-    //     window.addEventListener('scroll', ()=> {
-  
-    //       if(window.scrollY > x) {
-    //         console.log('superato');
-    //         headerElem.classList.add('ms_bg-primary');
-    //         headerElem.classList.remove('ms_bg-transparent');
-  
-    //       } else {
-    //         headerElem.classList.remove('ms_bg-primary');
-    //         headerElem.classList.add('ms_bg-transparent');
-    //       }
-  
-    //     })
-    //   } else {
-    //     headerElem.classList.remove('ms_bg-transparent', 'fixed-top');
-    //     headerElem.classList.add('ms_bg-primary', 'sticky-top');
-    //   }
-
-    // },
-
 
   }
 };
@@ -106,9 +75,7 @@ export default {
 <template>
   <div class="ms_container">
     <div class="bannerCont">
-      <!-- <img @click="closeAll"
-        src="../assets/img/roma.jpg"
-        alt=""> -->
+
         <img :src="getImagePath(img.link)" class="hero-img ms_hidden" alt="" v-for="img in storejs.city_img" :key="img">
       <div class="ms_externalContent">
         <p class="text-center mx-2" @click="closeAll">Prenota case al mare, ville e appartamenti in tutta Italia
@@ -123,8 +90,10 @@ export default {
     <div class="container my-5" v-if="searchActive">
       <div class="row g-4 md_search p-3" v-if="foundedFlats.length > 0">
         <p class="fs-2 text-black mb-2">Risultati della ricerca:</p>
+
+
         <div class="col-12 col-md-6 col-lg-4 col-xl-3" v-for="flat in foundedFlats" :key="flat">
-          <Flat_card :flat="flat" />
+          <Flat_card :flat="flat" :sponsored="flat.sponsored"/>
         </div>
       </div>
 

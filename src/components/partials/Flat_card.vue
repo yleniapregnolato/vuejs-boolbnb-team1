@@ -7,6 +7,7 @@ export default {
     },
     props: {
         flat: Object,
+        sponsored: Boolean
     }
 };
 </script>
@@ -16,7 +17,7 @@ export default {
             <div class="card h-100 border-0">
                 <div class="row flex-column g-0 h-100">
                     <div class="col-md-12 overflow-hidden">
-                        <div class="sponsored-badge"><i class="fa-solid fa-heart"></i> I più amati</div>
+                        <div class="sponsored-badge" v-if="sponsored"><i class="fa-solid fa-heart"></i> I più amati</div>
                         <img class="card-image img-fluid  w-100" :src="`${flatCoverImg}/${flat.main_img}`"
                             alt="immagine di copertina" />
                     </div>
