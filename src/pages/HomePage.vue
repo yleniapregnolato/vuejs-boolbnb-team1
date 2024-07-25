@@ -184,6 +184,12 @@ export default {
         font-size: 2rem;
         transition: all 0.7s;
       }
+
+      
+
+.bannerCont .ms_externalContent {
+    width: 100%;
+  }
   }
   @media (max-width: 456px) {
   .bannerCont .ms_externalContent p{

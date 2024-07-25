@@ -371,6 +371,11 @@ $bg-main : #F8F2EB;
 }
 
 @media (max-width :767px) {
+
+  .bannerCont .ms_externalContent {
+      width: 100%;
+    }
+    
   #ms_cont-s-bar{
     flex-direction: column;
     gap: 12px;
