@@ -1,5 +1,4 @@
 <script>
-
 import { storejs } from "../../store";
 import { mapActions, mapMutations } from "vuex/dist/vuex.cjs.js";
 export default {
@@ -7,45 +6,42 @@ export default {
   data() {
     return {
       storejs,
-    }
-    
+    };
   },
   methods: {
     getImagePath(image) {
       return new URL(`../../assets/img/${image}`, import.meta.url).href;
     },
-    getFilter(){
-
+    getFilter() {
       this.setFilterServices([]);
       this.setRadius(20);
       this.setBeds(1);
       this.setRooms(2);
     },
-  
-    
-    ...mapActions(['cercaAppartamenti' , 'setLatLon']),
-    ...mapMutations(['setFilterServices', 'setRadius', 'setBeds', 'setRooms']),
-  }
-  ,
+
+    ...mapActions(["cercaAppartamenti", "setLatLon"]),
+    ...mapMutations(["setFilterServices", "setRadius", "setBeds", "setRooms"]),
+  },
   props: {
     city: Object,
-  }
-
+  },
 };
 </script>
 
 <template>
-
-        <div class="card rounded card-hover ms_card" @click=" getFilter(),setLatLon(city)">
-          <img
-            class="card-img-top ms_img rounded"
-            :src="getImagePath(city.link)"
-            alt="Card image cap"
-          />
-          <div class="card-img-overlay text-center text-white rounded overlay">
-            <h4 class="card-title font">{{ city.name }}</h4>
-          </div>
-        </div>
+  <div
+    class="card rounded card-hover ms_card mt-2"
+    @click="getFilter(), setLatLon(city)"
+  >
+    <img
+      class="card-img-top ms_img rounded"
+      :src="getImagePath(city.link)"
+      alt="Card image cap"
+    />
+    <div class="card-img-overlay text-center text-white rounded overlay">
+      <h4 class="card-title font">{{ city.name }}</h4>
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss">
@@ -56,12 +52,12 @@ a {
 
 .ms_card {
   cursor: pointer;
-
 }
 .ms_img {
   height: 40vh;
   object-fit: cover;
   object-position: center;
+  transition: transform 0.3s ease;
 }
 
 .navbar {
@@ -70,7 +66,6 @@ a {
 
 .card {
   position: relative;
-
 }
 
 .font {
@@ -101,7 +96,7 @@ a {
   transition: filter 0.3s ease;
 }
 
-.card-hover:hover {
-  filter: brightness(100%);
+.card-hover:hover .ms_img {
+  transform: scale(1.03);
 }
 </style>
