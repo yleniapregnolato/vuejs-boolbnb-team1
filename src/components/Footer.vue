@@ -1,5 +1,11 @@
 <script>
-export default {};
+import AppIconSocial from '../components/partials/AppIconSocial.vue';
+
+export default {
+  components: {
+    AppIconSocial
+  }
+};
 </script>
 
 <template>
@@ -54,6 +60,10 @@ export default {};
             <li><a href="">Bookabach.com.nz</a></li>
             <li><a href="">Stayz.com.au</a></li>
           </ul>
+          <div class="d-flex flex-column gap-2">
+            <h5>I nostri Social:</h5>
+            <AppIconSocial/>
+          </div>
         </div>
         <!-- /Sezione destra -->
       </div>

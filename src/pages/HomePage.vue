@@ -108,13 +108,14 @@ export default {
     <!-- Card -->
     <div class="container my-5">
       <div class="row g-2">
-        <div class="col-4 col-lg-2" v-for="city in storejs.city_img" :key="city">
+        <h1 class=" text-center fs-2 text-black">Le nostre città partner:</h1>
+        <div class="mx-auto col-lg-2 col-sm-4" v-for="city in storejs.city_img" :key="city">
           <CityCard :city="city" />
         </div>
       </div>
     </div>
-
     <!-- /Card -->
+     
   </div>
 </template>
 
