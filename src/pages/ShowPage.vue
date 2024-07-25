@@ -179,7 +179,7 @@ export default {
     }
     .fixed-size {
         max-width: 100%;
-        max-height: 400px; /* Imposta l'altezza massima desiderata */
+        max-height: 400px; 
         object-fit: cover;
     }
 }
