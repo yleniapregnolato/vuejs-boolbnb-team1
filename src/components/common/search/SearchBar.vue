@@ -200,7 +200,7 @@ export default {
         </div>
         <!-- Aggiungi altri filtri qui -->
       </div>
-      <router-link :to="{ name: 'travel',  query: { beds: beds, rooms: rooms, services: serviceString , lat: storejs.lat, lon: storejs.lon}  }">
+      <router-link :to="{ name: 'travel',  query: { beds: beds, rooms: rooms, services: serviceString , lat: storejs.lat, lon: storejs.lon, radius: radius }  }">
         <button @click="getFilter()" class="ms_button rounded-4" ref="searchButton">Cerca</button>
       </router-link>
     </div>

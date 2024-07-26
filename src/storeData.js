@@ -145,7 +145,7 @@ const store = createStore({
         return;
       }
 
-      const url = `https://api.tomtom.com/search/${state.versionNumber}/search/${state.query}.${state.ext}?key=${state.apiKey}&typeahead=true&limit=10&countrySet=IT`;
+      const url = `https://api.tomtom.com/search/${state.versionNumber}/search/${state.query}.${state.ext}?key=${state.apiKey}&typeahead=true&limit=4&countrySet=IT`;
       try {
         const response = await fetch(url);
         const data = await response.json();

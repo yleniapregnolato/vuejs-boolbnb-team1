@@ -15,16 +15,6 @@ export default {
       serviceString: ''
     };
   },
-  // watch: {
-  //   '$route.query': {
-  //     handler() {
-  //       this.fetchDataQuery();
-  //       this.fetchFlats();
-  //     },
-  //     immediate: true,
-  //     deep: true
-  //   }
-  // },
 
   created() {
     this.fetchDataQuery();
@@ -80,7 +70,7 @@ export default {
         const filtersDropdownTravel = this.$refs.filtersDropdownTravel;
         const filtersButton = this.$refs.filtersButton;
         const searchButton = this.$refs.searchButton;
-
+        
         // console.log('Clicked outside:', !searchBarTravel.contains(event.target));
         // console.log('Dropdown:', !filtersDropdownTravel.contains(event.target));
         // console.log('Filters button:', !filtersButton.contains(event.target));
@@ -141,6 +131,8 @@ export default {
       this.setRooms(this.$route.query.rooms);
       this.setLatString(this.$route.query.lat);
       this.setLonString(this.$route.query.lon);
+      this.radius = this.$route.query.radius;
+      this.setRadius(this.radius)
       
     },
     getImagePath(image) {
@@ -235,7 +227,7 @@ export default {
       <!-- Aggiungi altri filtri qui -->
     </div>
 
-    <router-link :to="{ name: 'travel',  query: { beds: beds, rooms: rooms, services: serviceString, serviceString , lat: storejs.lat, lon: storejs.lon }  }">
+    <router-link :to="{ name: 'travel',  query: { beds: beds, rooms: rooms, services: serviceString, lat: storejs.lat, lon: storejs.lon, radius: radius }  }">
         <button @click="getFilter(), fetchFlats()" class="ms_button rounded-4" ref="searchButton">Cerca</button>
       </router-link>
 
@@ -245,5 +237,13 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+  .ms_searchbar:focus-within {
+    background-color: white;
+    
+    border: 1px solid var(--primary-color);
+  }
 
+  .ms_searchbar:focus-within input {
+    color: var(--primary-color);
+  }
 </style>
