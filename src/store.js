@@ -40,4 +40,7 @@ export const storejs = reactive({
             lon: 12.338913
         },
     ],
+    selected: '',
+    lat: '',
+    lon: ''
 })
