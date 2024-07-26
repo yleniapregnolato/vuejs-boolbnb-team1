@@ -108,7 +108,7 @@ export default {
 </script>
 
 <template>
-  <div class="container-fluid d-flex align-items-center" id="ms_cont-s-bar">
+  <div class="container-fluid d-flex align-items-center justify-content-center" id="ms_cont-s-bar">
     <div class="ms_searchbar rounded-4 my-5 pe-4" ref="searchBar">
       <input type="text" id="ms_input" placeholder="Cerca qualcosa.." v-model="selected" @input="handleInput"
         class="w-100" />
