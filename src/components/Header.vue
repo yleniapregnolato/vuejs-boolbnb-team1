@@ -8,6 +8,11 @@ export default {
         
     }
   },
+  methods: {
+    scrollTop() {
+      window.scrollTo(0, 0);
+    }
+  }
 
 };
 </script>
@@ -17,7 +22,7 @@ export default {
   <nav class="navbar navbar-expand-lg ms_headernav ms_bg-primary sticky-top">
     <div class="container-fluid">
       <router-link class="navbar-brand font nav-link" to="/">
-        <img src="../assets/img/logo-white.png" alt="">
+        <img src="../assets/img/logo-white.png" alt="" @click="scrollTop()">
       </router-link>
       <button class="navbar-toggler font border" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
         aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
