@@ -40,6 +40,7 @@ a {
 }
 
 .card {
+    
     &:hover .card-image {
         transform: scale(105%);
         border-radius: 5px;

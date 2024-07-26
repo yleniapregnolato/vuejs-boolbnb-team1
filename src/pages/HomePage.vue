@@ -109,7 +109,7 @@ export default {
     <div class="container my-5">
       <div class="row g-2">
         <h1 class=" text-center fs-2 text-black">Le nostre città partner:</h1>
-        <div class="mx-auto col-lg-2 col-sm-4" v-for="city in storejs.city_img" :key="city">
+        <div class="mx-auto col-6 col-md-4 col-lg-2 " v-for="city in storejs.city_img" :key="city">
           <CityCard :city="city" />
         </div>
       </div>
