@@ -75,9 +75,15 @@ const store = createStore({
     setLon(state, suggestion) {
       state.lon = suggestion.position.lon;
     },
+    setLatString(state, stringLat) {
+      state.lat = stringLat;
+    },
+    setLonString(state, stringLon) {
+      state.lon = stringLon;
+    },
     setAllFlats(state, data){
         state.allFlats = data;
-        console.log('Object array',state.allFlats);
+        console.log('AllFlats',state.allFlats);
     },
     setFoundedFlats(state, flat){
         state.foundedFlats.push(flat);
@@ -112,10 +118,12 @@ const store = createStore({
       const data = state.filter;
       
       console.log(data);
-        axios.post(state.fetchMyAPIPath + 'flats', data).then(r=> {
+        axios.get(state.fetchMyAPIPath + 'flats', {
+          params: data
+        }).then(r=> {
             // Controllo che abbia preso correttamente i risultati dalla chiamata API
             console.log('Risposta API:',r.data);
-            const arryFlats = Object.values(r.data);
+            const arryFlats = r.data.data;
             const sortedFlats = arryFlats.sort((a, b) => {
               if (a.sponsored && !b.sponsored) {
                   return -1;
@@ -168,10 +176,12 @@ const store = createStore({
         }
         console.log(state.foundedFlats);
 
-        const mainElem = document.querySelector('.bannerCont');
-        const headerElem = document.querySelector('.navbar')
-        const x = mainElem.offsetHeight + mainElem.offsetTop - headerElem.offsetHeight ;
-        window.scroll(0, x);
+        // const mainElem = document.querySelector('.containerMain');
+        // const headerElem = document.querySelector('.navbar');
+        // console.log(mainElem);
+        // console.log(headerElem);
+        // const x = mainElem.offsetHeight + mainElem.offsetTop - headerElem.offsetHeight ;
+        window.scroll(0, 0);
       },
       getDistanceFromLatLonInKm({ state }, { lat2, lon2 }) {
         const R = 6371; // Raggio della Terra in chilometri
