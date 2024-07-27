@@ -3,6 +3,7 @@ import axios from "axios";
 import ContactHostModal from '../components/partials/ContactHostModal.vue';
 import FlatMap from '../components/partials/FlatMap.vue';
 import ServiceModal from '../components/partials/ServiceModal.vue';
+import { errorMessages } from "vue/compiler-sfc";
 export default {
     components: {
         ContactHostModal,
@@ -18,6 +19,7 @@ export default {
             lon: null,
             flatCoverImg: "http://127.0.0.1:8000/storage",
             flatPhotosUrl: "http://127.0.0.1:8000/storage",
+            errorMessage: null,
         };
     },
     created() {
@@ -62,19 +64,19 @@ export default {
                     <section>
                         <div id="carouselExampleFade" class="carousel slide carousel-fade">
                             <div class="carousel-inner">
-                                <div class="carousel-item active" v-for="(photo, index) in photos.slice(0, 4)" :key="index">
+                                <div class="carousel-item active" v-for="(photo, index) in photos" :key="index">
                                     <img class="ms_photo img-fluid card-image d-block h-100 fixed-size rounded-4"
                                         :src="`${flatPhotosUrl}/${photo.image}`" alt="immagini" />
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
                                 data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <i class="fa-solid fa-chevron-left"></i>
                                 <span class="visually-hidden">Previous</span>
                             </button>
                             <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
                                 data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <i class="fa-solid fa-chevron-right"></i>
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
@@ -116,7 +118,7 @@ export default {
                     </section>
                     <!-- /info appartamento -->
                     <!-- modale servizi -->
-                    <ServiceModal :services="flatServices" />
+                    <ServiceModal :services="flatServices"/>
                     <!-- /modale servizi -->
 
                     <!-- modale contatti -->
@@ -172,9 +174,10 @@ export default {
 
         &:hover {
             background-color: #F8F2EB;
+            border: 1px solid #705D3F;
             transition: all 0.7s;
-            color: black;
-            border: 1px solid #F8F2EB;
+            color: var(--primary-color);
+            
         }
     }
     .fixed-size {
@@ -186,6 +189,11 @@ export default {
 
 .section-map {
     min-height: 200px;
+}
+
+.fa-chevron-left, .fa-chevron-right {
+    font-size: 35px;
+    filter: drop-shadow(0px 4px 0px black);
 }
 
 @media (max-width: 991px) {

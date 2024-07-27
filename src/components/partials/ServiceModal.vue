@@ -1,9 +1,6 @@
 <script>
 export default {
     props: {
-        flat: {
-            type: Object,
-        },
         services: {
             type: Array,
         }
@@ -30,7 +27,7 @@ export default {
 
 <template>
     <!-- Modale servizi -->
-    <button @click="serviceModal" class="btn ms_brown_btn mt-2 mb-2">Mostra tutti i servizi</button>
+    <button @click="serviceModal" class="btn ms_brown_btn mt-2 mb-2 me-2">Mostra tutti i servizi</button>
 
     <div class="modal ms_service-modal" :class="showServices ? 'd-block' : ''" tabindex="-1" aria-hidden="true" @click="closeModal">
         <div class="modal-dialog">
@@ -69,8 +66,8 @@ export default {
     &:hover {
         background-color: #F8F2EB;
         transition: all 0.7s;
-        color: black;
-        border: 1px solid #F8F2EB;
+        color: var(--primary-color);
+        border: 1px solid #705D3F;
     }
 }
 

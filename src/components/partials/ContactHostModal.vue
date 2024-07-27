@@ -55,7 +55,7 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="d-inline-block">
     <!-- Bottone per aprire il Modale -->
     <button type="button" class="btn ms_brown_btn" @click="showModal = true">
       Contatta l'host
@@ -186,8 +186,8 @@ export default {
   &:hover {
     background-color: #f8f2eb;
     transition: all 0.7s;
-    color: black;
-    border: 1px solid #f8f2eb;
+    color: var(--primary-color);
+    border: 1px solid #705d3f;
   }
 }
 
