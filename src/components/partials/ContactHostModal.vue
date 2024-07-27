@@ -1,7 +1,9 @@
 <script>
 import axios from "axios";
+import ToastNotification from '../ToastNotification.vue';
 
 export default {
+  components: { ToastNotification },
   props: {
     flatId: Number,
   },
@@ -43,19 +45,38 @@ export default {
         .then((response) => {
           // console.log("Dati inviati:", response.data);
           this.closeModal();
-          // reload
-          location.reload();
+          
+          this.mostraToast();
+          
         })
         .catch((error) => {
           console.error("Errore durante l'invio:", error);
         });
     },
+    mostraToast() {
+    const lineElem = document.querySelector('.ms_line');
+    const toastElem = document.querySelector('.ms_toast');
+    const messageElem = document.getElementById('message');
+    messageElem.innerHTML = "Messaggio inviato corrattamente";
+    toastElem.classList.toggle('ms_hidden');
+    lineElem.classList.toggle('ms_hidden');
+    lineElem.classList.toggle('w-100');
+
+    setTimeout(this.nascondiToast, 4700);
+},
+nascondiToast() {
+    const lineElem = document.querySelector('.ms_line');
+    const toastElem = document.querySelector('.ms_toast');
+    toastElem.classList.toggle('ms_hidden');
+    lineElem.classList.toggle('ms_hidden');
+    lineElem.classList.toggle('w-100');
+}
   },
 };
 </script>
 
 <template>
-  <div>
+  <div class="d-inline-block">
     <!-- Bottone per aprire il Modale -->
     <button type="button" class="btn ms_brown_btn" @click="showModal = true">
       Contatta l'host
@@ -157,7 +178,7 @@ export default {
 
               <!-- Submit -->
               <div class="d-flex gap-2 mt-2">
-                <button type="submit" class="btn ms_brown_btn">Invia</button>
+                <button type="submit" class="btn ms_brown_btn" id="send-btn">Invia</button>
                 <button
                   type="button"
                   class="btn ms_brown_btn2"
@@ -176,6 +197,8 @@ export default {
     </div>
     <!-- /Modale -->
   </div>
+
+  <ToastNotification/>
 </template>
 
 <style lang="scss" scoped>
@@ -186,8 +209,8 @@ export default {
   &:hover {
     background-color: #f8f2eb;
     transition: all 0.7s;
-    color: black;
-    border: 1px solid #f8f2eb;
+    color: var(--primary-color);
+    border: 1px solid #705d3f;
   }
 }
 

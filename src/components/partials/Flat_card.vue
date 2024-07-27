@@ -16,16 +16,20 @@ export default {
     <router-link :to="{ name: 'show', params: { slug: flat.slug } }">
             <div class="card h-100 border-0">
                 <div class="row flex-column g-0 h-100">
-                    <div class="col-md-12 overflow-hidden">
+                    <div class="col-md-12 overflow-hidden position-relative">
                         <div class="sponsored-badge" v-if="sponsored"><i class="fa-solid fa-heart"></i> I più amati</div>
                         <img class="card-image img-fluid  w-100" :src="`${flatCoverImg}/${flat.main_img}`"
                             alt="immagine di copertina" />
+                            <div class="text-center ms_beds-rooms">
+                                {{ flat.beds }} <i class="fa-solid fa-bed me-4"></i>
+                                {{ flat.rooms }} <i class="fa-solid fa-door-open"></i>
+                            </div>
                     </div>
                     <div class="col-md-12">
                         <div class="card-body">
                             <h5 class="card-title">{{ flat.title }}</h5>
                             <p class="card-text">{{ flat.address }}</p>
-                            <!-- <p class="card-text"><small class="text-body-secondary">{{ flat.description }}</small></p> -->
+
                         </div>
                     </div>
                 </div>
@@ -63,6 +67,16 @@ a {
         object-position: center;
         height: 300px;
         transition: all 0.5s;
+    }
+
+    .ms_beds-rooms {
+        background-color: white;
+        position: absolute;
+        padding: 5px;
+        bottom: 0;
+        right: 0;
+        border-radius: 5px 0px 0px 0px;
+        
     }
 }
 </style>
