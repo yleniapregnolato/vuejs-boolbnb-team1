@@ -75,6 +75,12 @@ const store = createStore({
     setLon(state, suggestion) {
       state.lon = suggestion.position.lon;
     },
+    setResetLatLon(state, data){
+      state.lon = data;
+      state.lat = data;
+      console.log('lat', state.lat);
+
+    },
     setLatString(state, stringLat) {
       state.lat = stringLat;
     },
@@ -87,6 +93,10 @@ const store = createStore({
     },
     setFoundedFlats(state, flat){
         state.foundedFlats.push(flat);
+    },
+    setResetFoundedFlats(state, data){
+      state.foundedFlats = data;
+      console.log('flats', state.foundedFlats);
     },
     setSelectedSuggestion(state, suggestion) {
       state.selectedSuggestion = suggestion;
