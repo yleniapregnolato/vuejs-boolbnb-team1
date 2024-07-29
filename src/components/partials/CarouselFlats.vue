@@ -1,12 +1,14 @@
 <template>
-    <div class="container my-5 text-center">
-        <h1 class="py-3 m-0 fs-2">Appartamenti consigliati</h1>
+    <div class="container my-5">
+        <div class="text-center">
+            <h1 class="py-3 m-0 fs-2">Appartamenti consigliati</h1>
+        </div>
         <div class="carousel-wrap">
             <swiper :modules="modules" :slides-per-view="4" :space-between="10" :loop="true"
                 :autoplay="{ delay: 3000, disableOnInteraction: false }" :navigation="{
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
-                }" :pagination="{ clickable: true }" :breakpoints="breakpoints" @swiper="onSwiper" mousewheel>
+                }" :pagination="{ clickable: true }" :breakpoints="breakpoints" mousewheel>
                 <swiper-slide v-for="flat in flats" :key="flat.id">
                     <Flat_card :flat="flat" :sponsored="false" />
                 </swiper-slide>
@@ -63,6 +65,7 @@ export default {
         fetchFlats() {
             axios.get('http://127.0.0.1:8000/api/flats/sponsored').then((resp) => {
                 this.flats = resp.data;
+                
             });
         }
     }
@@ -76,7 +79,8 @@ export default {
 }
 
 .carousel-wrap {
-    
+    position: relative;
+    z-index: 0;
     padding: 10px;
     width: 100%;
     display: flex;

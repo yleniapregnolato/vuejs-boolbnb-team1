@@ -86,7 +86,7 @@ export default {
             this.$store.commit('closeFiltersDropdown');
           }
         }
-
+        this.clicked = false;
         this.handleSearchBarClick(event);
     },
     handleSearchBarClick(event) {
@@ -121,7 +121,8 @@ export default {
       // window.history.pushState(null,null, `radius=${this.radius}&services=${services}`);
       // Chiudo al click sul cerca
       this.$store.commit('closeFiltersDropdown');
-      console.log('get filter');
+      // console.log('get filter');
+      
     },
 
     fetchDataQuery() {
@@ -228,7 +229,7 @@ export default {
     </div>
 
     <router-link :to="{ name: 'travel',  query: { beds: beds, rooms: rooms, services: serviceString, lat: storejs.lat, lon: storejs.lon, radius: radius }  }">
-        <button @click="getFilter(), fetchFlats()" class="ms_button rounded-4" ref="searchButton">Cerca</button>
+        <button @click="getFilter(), fetchFlats()" class="ms_button rounded-4" ref="searchButton" :disabled = "storejs.selected.trim() == ''">Cerca</button>
       </router-link>
 
   </div>
