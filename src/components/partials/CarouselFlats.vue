@@ -1,5 +1,5 @@
 <template>
-    <div class="container my-5 text-center">
+    <div class="container my-5 text-center" v-if="flats.length > 0">
         <h1 class="py-3 m-0 fs-2">Appartamenti consigliati</h1>
         <div class="carousel-wrap">
             <swiper :modules="modules" :slides-per-view="4" :space-between="10" :loop="true"
@@ -76,7 +76,8 @@ export default {
 }
 
 .carousel-wrap {
-    
+    position: relative;
+    z-index: 0;
     padding: 10px;
     width: 100%;
     display: flex;
