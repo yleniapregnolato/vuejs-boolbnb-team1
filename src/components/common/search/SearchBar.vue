@@ -16,6 +16,9 @@ export default {
       serviceString: ''
     };
   },
+  created() {
+    storejs.selected = '';
+  },
   mounted() {
     // this.$store.dispatch('fetchFlats');
     document.addEventListener('click', this.handleClickOutside);
@@ -67,9 +70,10 @@ export default {
       ) {
         if (this.filtersDropdownVisible) {
           this.$store.commit('closeFiltersDropdown');
+
         }
       }
-
+      this.clicked = false;
       this.handleSearchBarClick(event);
     },
     handleSearchBarClick(event) {
@@ -106,6 +110,7 @@ export default {
       // window.history.pushState(null,null, `radius=${this.radius}&services=${services}`);
       // Chiudo al click sul cerca
       this.$store.commit('closeFiltersDropdown');
+      
     },
     getImagePath(image) {
       return new URL(`../../../assets/img/services/${image}`, import.meta.url).href;
@@ -201,7 +206,7 @@ export default {
         <!-- Aggiungi altri filtri qui -->
       </div>
       <router-link :to="{ name: 'travel',  query: { beds: beds, rooms: rooms, services: serviceString , lat: storejs.lat, lon: storejs.lon, radius: radius }  }">
-        <button @click="getFilter()" class="ms_button rounded-4" ref="searchButton">Cerca</button>
+        <button @click="getFilter()" class="ms_button rounded-4" ref="searchButton" :disabled = "storejs.selected.trim() == '' ">Cerca</button>
       </router-link>
     </div>
     <!-- / div button -->
