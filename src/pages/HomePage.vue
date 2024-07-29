@@ -7,6 +7,7 @@ import Flat_card from '../components/partials/Flat_card.vue';
 import FlatsNotFound from '../components/partials/FlatsNotFound.vue';
 import { storejs } from '../store';
 import { useRoute } from 'vue-router';
+import CarouselFlats from '../components/partials/CarouselFlats.vue';
 
 
 export default {
@@ -29,7 +30,7 @@ export default {
 
     },
   name: "HomePage",
-  components: { SearchComponent, CityCard, Footer, Flat_card, FlatsNotFound },
+  components: { SearchComponent, CityCard, Footer, Flat_card, FlatsNotFound, CarouselFlats },
 
 
   computed: {
@@ -85,6 +86,8 @@ export default {
         </div>
       </div>
     </div>
+
+    <CarouselFlats />
     
     <!-- flats researched -->
     <div class="container my-5" v-if="searchActive">
