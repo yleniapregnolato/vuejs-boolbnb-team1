@@ -17,6 +17,8 @@ export default {
   },
 
   created() {
+    this.setResetFoundedFlats([]);
+    this.setSearchActiveFalse();
     this.fetchDataQuery();
     this.fetchFlats();
   },
@@ -102,8 +104,7 @@ export default {
     },
     getFilter() {
       this.setResetFoundedFlats([]);
-    // this.setResetLatLon("");
-    this.setSearchActiveFalse();
+      this.setSearchActiveFalse();
       // prendo tutti elementi con attributo name=services[] e che sono checked
       let arrayCheckedElem = document.querySelectorAll('[name = "services[]"]:checked');
 
