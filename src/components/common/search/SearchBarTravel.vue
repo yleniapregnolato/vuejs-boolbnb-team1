@@ -17,6 +17,8 @@ export default {
   },
 
   created() {
+    this.setResetFoundedFlats([]);
+    this.setSearchActiveFalse();
     this.fetchDataQuery();
     this.fetchFlats();
   },
@@ -52,7 +54,7 @@ export default {
     // },
   },
   methods: {
-    ...mapMutations(['setQuery', 'toggleFiltersDropdown','closeFiltersDropdown' ,'setFilterServices', 'setRadius', 'setBeds', 'setRooms', 'setLatString', 'setLonString']),
+    ...mapMutations(['setQuery', 'toggleFiltersDropdown','closeFiltersDropdown' ,'setFilterServices', 'setRadius', 'setBeds', 'setRooms', 'setLatString', 'setLonString', 'setResetFoundedFlats', 'setSearchActiveFalse']),
     ...mapActions(['fetchSuggestions', 'selectSuggestion', 'fetchFlats', 'cercaAppartamenti']),
     handleInput(event) {
       this.setQuery(event.target.value);
@@ -101,6 +103,8 @@ export default {
       }
     },
     getFilter() {
+      this.setResetFoundedFlats([]);
+      this.setSearchActiveFalse();
       // prendo tutti elementi con attributo name=services[] e che sono checked
       let arrayCheckedElem = document.querySelectorAll('[name = "services[]"]:checked');
 

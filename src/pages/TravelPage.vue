@@ -21,9 +21,10 @@ export default {
       'isDateActive',
       'isPeopleActive',
       'foundedFlats',
-      'searchActive']),
+      'searchActive',
+      'isLoading']),
 
-      beds() {
+    beds() {
       return this.$route.query.beds;
     },
     rooms() {
@@ -37,7 +38,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['setQuery', 'toggleFiltersDropdown', 'closeFiltersDropdown', 'setFilterServices', 'setRadius', 'setBeds', 'setRooms']),
+    ...mapMutations(['setQuery', 'toggleFiltersDropdown', 'closeFiltersDropdown', 'setFilterServices', 'setRadius', 'setBeds', 'setRooms', 'setisLoading']),
     ...mapActions(['fetchSuggestions', 'selectSuggestion', 'fetchFlats', 'cercaAppartamenti']),
 
     getImagePath(image) {
@@ -57,7 +58,13 @@ export default {
 
   <div class="container">
 
-    <div class="container my-5" v-if="searchActive">
+    <span v-if="isLoading" class="text-black text-center my-5 is-loading">
+      <img src="../assets/icon.png" alt="Icon BoolBnB" class="ms_icon">
+      <img src="../assets/glass.png" class="glass" alt="">
+    </span>
+
+    <div class="container my-5" v-if="searchActive || foundedFlats.length > 0">
+
       <div class="row g-4 md_search p-3" v-if="foundedFlats.length > 0">
         <p class="fs-2 text-black mb-2"><i class="fa-solid fa-magnifying-glass"></i> Risultati della ricerca:</p>
 
@@ -78,7 +85,50 @@ export default {
 </template>
 <style lang="scss" scoped>
 .md_search {
-    background-color: rgba(180, 184, 151, 0.3);
-    border-radius: 15px;
+  background-color: rgba(180, 184, 151, 0.3);
+  border-radius: 15px;
+}
+.is-loading {
+  position: relative;
+  display: inline-block;
+  
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+  
+  .ms_icon {
+    max-width: 60px;
+    position: relative; /* Rende .ms_icon il punto di riferimento */
+    z-index: 1; /* Assicura che l'icona rimanga sopra .glass */
+  }
+
+  .glass {
+    max-width: 80px;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    
+    animation: search 2s linear infinite;
+  }
+
+  @keyframes search {
+    0% {
+      transform: rotate(0deg) translateX(25px) rotate(0deg);
+    }
+    25% {
+      transform: rotate(90deg) translateX(25px) rotate(-90deg);
+    }
+    50% {
+      transform: rotate(180deg) translateX(25px) rotate(-180deg);
+    }
+    75% {
+      transform: rotate(270deg) translateX(25px) rotate(-270deg);
+    }
+    100% {
+      transform: rotate(360deg) translateX(25px) rotate(-360deg);
+    }
+  }
 }
 </style>

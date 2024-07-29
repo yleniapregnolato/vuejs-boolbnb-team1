@@ -1,8 +1,10 @@
 <template>
-    <div class="container my-5">
-        <div class="text-center">
+
+    <div class="container my-5 text-center" v-if="flats.length > 0">
+         <div class="text-center">
             <h1 class="py-3 m-0 fs-2">Appartamenti consigliati</h1>
         </div>
+
         <div class="carousel-wrap">
             <swiper :modules="modules" :slides-per-view="4" :space-between="10" :loop="true"
                 :autoplay="{ delay: 3000, disableOnInteraction: false }" :navigation="{

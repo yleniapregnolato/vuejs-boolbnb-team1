@@ -24,6 +24,12 @@ export default {
     }
   },
 
+  created() {
+    this.setResetFoundedFlats([]);
+    this.setResetLatLon("");
+    this.setSearchActiveFalse();
+  },
+
   mounted() {
     this.alternateHeroImg();
     // this.changeHeader();
@@ -39,11 +45,12 @@ export default {
       'isDateActive',
       'isPeopleActive',
       'foundedFlats',
-      'searchActive'
+      'searchActive',
+
     ])
   },
   methods: {
-    ...mapMutations(['closeAll']),
+    ...mapMutations(['closeAll', 'setResetLatLon', 'setResetFoundedFlats', 'setSearchActiveFalse']),
     getImagePath(image) {
       return new URL(`../assets/img/${image}`, import.meta.url).href;
     },

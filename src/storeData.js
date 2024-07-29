@@ -28,6 +28,7 @@ const store = createStore({
       radius : 20,
       searchActive: false,
       filter: {},
+      isLoading: false,
     };
   },
   mutations: {
@@ -104,6 +105,9 @@ const store = createStore({
     setSearchActive(state) {
       state.searchActive = true;
     },
+    setSearchActiveFalse(state) {
+      state.searchActive = false;
+    },
     setCoordinates(state, city) {
       state.lon = city.lon;
       state.lat = city.lat;
@@ -121,10 +125,14 @@ const store = createStore({
     setRooms(state, rooms) {
       state.filter.rooms = rooms;
     },
+    setisLoading(state, data) {
+      state.isLoading = data;
+      console.log('isLoading', state.isLoading);
+    }
   },
   actions: {
     fetchFlats({commit, state, dispatch}){
-      
+      commit('setisLoading', true);
       const data = state.filter;
       
       console.log(data);
@@ -144,8 +152,10 @@ const store = createStore({
               }
           });
             commit('setAllFlats', sortedFlats );
-            
-            dispatch('cercaAppartamenti');
+            setTimeout(function() {
+              dispatch('cercaAppartamenti');
+
+            },2000);
         });
         
     },
@@ -184,13 +194,9 @@ const store = createStore({
             commit('setFoundedFlats', flat);
           }
         }
+        commit('setisLoading', false);
         console.log(state.foundedFlats);
 
-        // const mainElem = document.querySelector('.containerMain');
-        // const headerElem = document.querySelector('.navbar');
-        // console.log(mainElem);
-        // console.log(headerElem);
-        // const x = mainElem.offsetHeight + mainElem.offsetTop - headerElem.offsetHeight ;
         window.scroll(0, 0);
       },
       getDistanceFromLatLonInKm({ state }, { lat2, lon2 }) {
