@@ -6,6 +6,11 @@ export default {
   data() {
     return {
       storejs,
+      beds: 1,
+      rooms: 2,
+      services: "[]",
+      radius: 20,
+
     };
   },
   methods: {
@@ -29,19 +34,16 @@ export default {
 </script>
 
 <template>
-  <div
-    class="card rounded card-hover ms_card mt-2"
-    @click="getFilter(), setLatLon(city)"
-  >
-    <img
-      class="card-img-top ms_img rounded"
-      :src="getImagePath(city.link)"
-      alt="Card image cap"
-    />
-    <div class="card-img-overlay text-center text-white rounded overlay">
-      <h4 class="card-title font">{{ city.name }}</h4>
+  
+  <router-link @click="setLatLon(city)"
+    :to="{ name: 'travel', query: { beds: beds, rooms: rooms, services: services, lat: city.lat, lon: city.lon, radius: radius } }">
+    <div class="card rounded card-hover ms_card mt-2" >
+      <img class="card-img-top ms_img rounded" :src="getImagePath(city.link)" alt="Card image cap" />
+      <div class="card-img-overlay text-center text-white rounded overlay">
+        <h4 class="card-title font">{{ city.name }}</h4>
+      </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <style scoped lang="scss">
@@ -53,6 +55,7 @@ a {
 .ms_card {
   cursor: pointer;
 }
+
 .ms_img {
   height: 40vh;
   object-fit: cover;
@@ -61,7 +64,8 @@ a {
 }
 
 .navbar {
-  z-index: 1000; /* Assicura che la navbar sia sopra le cards */
+  z-index: 1000;
+  /* Assicura che la navbar sia sopra le cards */
 }
 
 .card {
