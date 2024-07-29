@@ -6,7 +6,7 @@
                 :autoplay="{ delay: 3000, disableOnInteraction: false }" :navigation="{
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
-                }" :pagination="{ clickable: true }" :breakpoints="breakpoints" @swiper="onSwiper" mousewheel>
+                }" :pagination="{ clickable: true }" :breakpoints="breakpoints" mousewheel>
                 <swiper-slide v-for="flat in flats" :key="flat.id">
                     <Flat_card :flat="flat" :sponsored="false" />
                 </swiper-slide>
