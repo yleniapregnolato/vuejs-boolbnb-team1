@@ -209,6 +209,7 @@ export default {
         <button @click="getFilter()" class="ms_button rounded-4" ref="searchButton" :disabled = "storejs.selected.trim() == '' ">Cerca</button>
       </router-link>
     </div>
+    
     <!-- / div button -->
   </div>
 </template>
