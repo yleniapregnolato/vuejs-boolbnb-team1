@@ -54,17 +54,17 @@ export default {
             <!-- /messaggio di errore -->
             <h1 class="fw-bold mb-2">{{ flat.title }}</h1>
 
-            <div class="row">
+            <div class="row ms_heigth">
                 <div class="col-md-7 col-12">
                     <img class="card-image img-fluid ms_photos h-100 fixed-size rounded-4" :src="`${flatCoverImg}/${flat.main_img}`"
                         alt="immagine di copertina" />
                 </div>
                 <!-- carosello -->
-                <div class="col-md-5 col-12 mt-2 mt-md-0" v-if="photos.length">
-                    <section>
-                        <div id="carouselExampleFade" class="carousel slide carousel-fade">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active" v-for="(photo, index) in photos" :key="index">
+                <div class="col-md-5 col-12 mt-2 mt-md-0 ms_col" v-if="photos.length">
+                    <section class="h-100">
+                        <div id="carouselExampleFade" class="h-100 carousel slide carousel-fade">
+                            <div class="carousel-inner h-100">
+                                <div class="carousel-item active h-100" v-for="(photo, index) in photos" :key="index">
                                     <img class="ms_photo img-fluid card-image d-block h-100 fixed-size rounded-4"
                                         :src="`${flatPhotosUrl}/${photo.image}`" alt="immagini" />
                                 </div>
@@ -146,6 +146,10 @@ export default {
         height: 400px;
     }
 
+    .ms_col {
+        height: 100%;
+    }
+
     .ms_photos {
         object-fit: cover;
     }
@@ -199,6 +203,18 @@ export default {
 @media (max-width: 991px) {
     .col-map {
     padding: 0;
+}
+}
+
+@media screen and (max-width: 768px) {
+    .show-container {
+    .ms_heigth {
+        height: 100%;
+    }
+
+    .ms_col {
+        height: 300px;
+    }
 }
 }
 </style>
