@@ -28,7 +28,7 @@ BoolBnB è una piattaforma che permette ai proprietari di appartamenti di regist
 -	Pagina di Ricerca Avanzata: Permette di visualizzare i risultati di ricerca, anche attraverso l’applicazione di filtri in base alle esigenze dell’utente.
 -	Pagina Dettaglio Appartamento: Permette di visualizzare tutti i dettagli disponibili per un appartamento e permette l’invio di un messaggio al proprietario per avere ulteriori informazioni.
 -	Sponsorizzazione degli appartamenti: gli appartamenti sponsorizzati sono evidenziati in una sezione dedicata.
--	
+
 ### CONTRIBUTORS:
 
 - [sabino-olivieri](https://github.com/sabino-olivieri)
