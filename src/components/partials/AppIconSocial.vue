@@ -7,7 +7,7 @@ export default {};
     <div class="icon facebook">
       <span
         ><a
-          href="https://www.facebook.com/ThemeFusion-101565403356430/"
+          href="#"
           target="_blank"
           ><i class="fa-brands fa-facebook-f"></i></a
       ></span>
@@ -15,21 +15,21 @@ export default {};
 
     <div class="icon instagram">
       <span
-        ><a href="https://www.instagram.com/themefusion/" target="_blank"
+        ><a href="" target="_blank"
           ><i class="fa-brands fa-instagram"></i></a
       ></span>
     </div>
 
     <div class="icon twitter">
       <span
-        ><a href="https://twitter.com/theme_fusion" target="_blank"
+        ><a href="#" target="_blank"
           ><i class="fa-brands fa-x-twitter"></i></a
       ></span>
     </div>
 
     <div class="icon youtube">
       <span
-        ><a href="https://www.youtube.com/@AvadaVideos" target="_blank"
+        ><a href="#" target="_blank"
           ><i class="fa-brands fa-youtube"></i></a
       ></span>
     </div>
