@@ -57,9 +57,9 @@ export default {
       const filtersButton = this.$refs.filtersButton;
       const searchButton = this.$refs.searchButton;
 
-      console.log('Clicked outside:', !searchBar.contains(event.target));
-      console.log('Dropdown:', !filtersDropdown.contains(event.target));
-      console.log('Filters button:', !filtersButton.contains(event.target));
+      // console.log('Clicked outside:', !searchBar.contains(event.target));
+      // console.log('Dropdown:', !filtersDropdown.contains(event.target));
+      // console.log('Filters button:', !filtersButton.contains(event.target));
       // console.log('Search button:', !searchButton.contains(event.target));
 
       if (

@@ -21,6 +21,7 @@ export default {
     this.setSearchActiveFalse();
     this.fetchDataQuery();
     this.fetchFlats();
+    window.scroll(0,0);
   },
 
   mounted() {
@@ -35,23 +36,9 @@ export default {
         console.error('Errore durante il fetch:', error);
       });
   },
-  // beforeDestroy() {
-  //   document.removeEventListener('click', this.handleClickOutside);
-  // },
+
   computed: {
     ...mapState(['query', 'suggestions', 'selectedSuggestion', 'filtersDropdownVisible']),
-    // beds() {
-    //   return this.$route.query.beds;
-    // },
-    // rooms() {
-    //   return this.$route.query.rooms;
-    // },
-    // services() {
-    //   return JSON.parse(this.$route.query.services || '[]');
-    // },
-    // perPage() {
-    //   return this.$route.query.per_page;
-    // },
   },
   methods: {
     ...mapMutations(['setQuery', 'toggleFiltersDropdown','closeFiltersDropdown' ,'setFilterServices', 'setRadius', 'setBeds', 'setRooms', 'setLatString', 'setLonString', 'setResetFoundedFlats', 'setSearchActiveFalse']),
@@ -103,6 +90,7 @@ export default {
       }
     },
     getFilter() {
+      window.scroll(0,0);
       this.setResetFoundedFlats([]);
       this.setSearchActiveFalse();
       // prendo tutti elementi con attributo name=services[] e che sono checked
