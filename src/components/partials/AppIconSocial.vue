@@ -7,7 +7,7 @@ export default {};
     <div class="icon facebook">
       <span
         ><a
-          href="#"
+          href="https://www.facebook.com/photo/?fbid=496830701799564&set=a.496830691799565&locale=it_IT"
           target="_blank"
           ><i class="fa-brands fa-facebook-f"></i></a
       ></span>
@@ -15,21 +15,21 @@ export default {};
 
     <div class="icon instagram">
       <span
-        ><a href="" target="_blank"
+        ><a href="https://www.instagram.com/p/Ch-w_xOKz1a/" target="_blank"
           ><i class="fa-brands fa-instagram"></i></a
       ></span>
     </div>
 
     <div class="icon twitter">
       <span
-        ><a href="#" target="_blank"
+        ><a href="https://x.com/berlusconi/status/1565264430379802625" target="_blank"
           ><i class="fa-brands fa-x-twitter"></i></a
       ></span>
     </div>
 
     <div class="icon youtube">
       <span
-        ><a href="#" target="_blank"
+        ><a href="https://www.youtube.com/watch?v=y3n3nFQm11o" target="_blank"
           ><i class="fa-brands fa-youtube"></i></a
       ></span>
     </div>
