@@ -89,26 +89,19 @@ export default {
     },
     getFilter() {
       // prendo tutti elementi con attributo name=services[] e che sono checked
-      console.log('filtri presi');
       let arrayCheckedElem = document.querySelectorAll('[name = "services[]"]:checked');
 
-      const services = []
+      const services = [];
 
       arrayCheckedElem.forEach(element => {
         services.push(parseInt(element.value));
       });
 
-      // console.log(checkedServices);
-      this.serviceString = '['+ services.join(', ')+']'
-      this.setFilterServices(this.serviceString);
-      this.setRadius(this.radius);
-      this.setBeds(this.beds);
-      this.setRooms(this.rooms);
-      document.removeEventListener('click', this.handleClickOutside);
+      this.serviceString = '['+ services.join(',') + ']';
 
 
-      // window.history.pushState(null,null, `radius=${this.radius}&services=${services}`);
-      // Chiudo al click sul cerca
+      this.setFilterServices(stringArr);
+  
       this.$store.commit('closeFiltersDropdown');
       
     },
