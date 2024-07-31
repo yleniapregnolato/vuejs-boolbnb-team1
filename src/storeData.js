@@ -79,8 +79,6 @@ const store = createStore({
     setResetLatLon(state, data){
       state.lon = data;
       state.lat = data;
-      console.log('lat', state.lat);
-
     },
     setLatString(state, stringLat) {
       state.lat = stringLat;
@@ -90,14 +88,14 @@ const store = createStore({
     },
     setAllFlats(state, data){
         state.allFlats = data;
-        console.log('AllFlats',state.allFlats);
+        // console.log('AllFlats',state.allFlats);
     },
     setFoundedFlats(state, flat){
         state.foundedFlats.push(flat);
     },
     setResetFoundedFlats(state, data){
       state.foundedFlats = data;
-      console.log('flats', state.foundedFlats);
+      // console.log('flats', state.foundedFlats);
     },
     setSelectedSuggestion(state, suggestion) {
       state.selectedSuggestion = suggestion;
@@ -114,6 +112,7 @@ const store = createStore({
     },
     setFilterServices(state, arrayServices) {
       state.filter.services = arrayServices;
+      console.log(typeof(state.filter.services), state.filter.services);
     },
     setRadius(state, newRadius) {
       state.radius = newRadius;
@@ -127,7 +126,6 @@ const store = createStore({
     },
     setisLoading(state, data) {
       state.isLoading = data;
-      console.log('isLoading', state.isLoading);
     }
   },
   actions: {
@@ -140,7 +138,7 @@ const store = createStore({
           params: data
         }).then(r=> {
             // Controllo che abbia preso correttamente i risultati dalla chiamata API
-            console.log('Risposta API:',r.data);
+            // console.log('Risposta API:',r.data);
             const arryFlats = r.data.data;
             const sortedFlats = arryFlats.sort((a, b) => {
               if (a.sponsored && !b.sponsored) {
@@ -182,20 +180,17 @@ const store = createStore({
       commit("setSuggestions", []);
     },
     async cercaAppartamenti({ dispatch, state, commit }) {
-      console.log('cerco');
         state.foundedFlats = [];
         
         commit("setSearchActive");
         commit("closeAll");
         for (const flat of state.allFlats) {
-          console.log('entrato nel for');
           const d = await dispatch('getDistanceFromLatLonInKm', { lat2: flat.latitude, lon2: flat.longitude });
           if (d < state.radius) {
             commit('setFoundedFlats', flat);
           }
         }
         commit('setisLoading', false);
-        console.log(state.foundedFlats);
 
         window.scroll(0, 0);
       },

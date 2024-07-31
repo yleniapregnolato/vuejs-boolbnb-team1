@@ -58,18 +58,18 @@ export default {
         const searchBarTravel = this.$refs.searchBarTravel;
         const filtersDropdownTravel = this.$refs.filtersDropdownTravel;
         const filtersButton = this.$refs.filtersButton;
-        const searchButton = this.$refs.searchButton;
+        const searchButtonTravel = this.$refs.searchButtonTravel;
         
         // console.log('Clicked outside:', !searchBarTravel.contains(event.target));
         // console.log('Dropdown:', !filtersDropdownTravel.contains(event.target));
         // console.log('Filters button:', !filtersButton.contains(event.target));
-        // console.log('Search button:', !searchButton.contains(event.target));
+        // console.log('Search button:', !searchButtonTravel.contains(event.target));
 
         if (
           (filtersDropdownTravel && !filtersDropdownTravel.contains(event.target)) &&
           (searchBarTravel && !searchBarTravel.contains(event.target)) &&
           (filtersButton && !filtersButton.contains(event.target)) &&
-          (searchButton && !searchButton.contains(event.target))
+          (searchButtonTravel && !searchButtonTravel.contains(event.target))
         ) {
           if (this.filtersDropdownVisible) {
             this.$store.commit('closeFiltersDropdown');
@@ -118,14 +118,15 @@ export default {
     },
 
     fetchDataQuery() {
-      this.setFilterServices(JSON.parse(this.$route.query.services || '[]'));
+      this.setFilterServices(this.$route.query.services || '[]');
+      // console.log(JSON.parse(this.$route.query.services), 'conversione')
       // this.setRadius(this.radius);
       this.setBeds(this.$route.query.beds);
       this.setRooms(this.$route.query.rooms);
       this.setLatString(this.$route.query.lat);
       this.setLonString(this.$route.query.lon);
       this.radius = this.$route.query.radius;
-      this.setRadius(this.radius)
+      this.setRadius(this.radius);
       
     },
     getImagePath(image) {
@@ -221,7 +222,7 @@ export default {
     </div>
 
     <router-link :to="{ name: 'travel',  query: { beds: beds, rooms: rooms, services: serviceString, lat: storejs.lat, lon: storejs.lon, radius: radius }  }">
-        <button @click="getFilter(), fetchFlats()" class="ms_button rounded-4" ref="searchButton" :disabled = "storejs.selected.trim() == ''">Cerca</button>
+        <button @click="getFilter(), fetchFlats()" class="ms_button rounded-4" ref="searchButtonTravel" :disabled = "storejs.selected.trim() == ''">Cerca</button>
       </router-link>
 
   </div>

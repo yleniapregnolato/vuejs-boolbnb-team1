@@ -61,7 +61,6 @@ export default {
     staticHeader() {
       window.removeEventListener('scroll', this.effectHeader)
       const headerElem = document.querySelector('.ms_headernav');
-      console.log('altro');
       headerElem.classList.add('ms_bg-primary', 'sticky-top');
       headerElem.classList.remove('ms_bg-transparent', 'fixed-top');
     },
